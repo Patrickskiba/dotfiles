@@ -8,6 +8,8 @@ alias pastecb='xclip -selection c -o'
 
 export PS1="\[\e[94m\]\u\[\e[m\] \[\e[32m\]\W\[\e[m\] \\$ "
 
+v() { du -a ~/Code | grep -v -E 'node_modules|\.git' | awk '{print $2}' | fzf | xargs -r $EDITOR; }
+
 ## GENERAL OPTIONS ##
 # Prevent file overwrite on stdout redirection
 # Use `>|` to force redirection to an existing file
