@@ -10,7 +10,7 @@ export PS1="\[\e[94m\]\u\[\e[m\] \[\e[32m\]\W\[\e[m\] \\$ "
 
 v() { find ~/Code | grep -v -E 'node_modules|\.git' | fzf | xargs -r $EDITOR; }
 
-s() { cd "$(find ~/ -type d | grep -v -E 'node_modules|\/\.' | fzf)"; }
+c() { cd "$(find ~/ -type d | grep -v -E 'node_modules|\/\.' | fzf)"; }
 
 ## GENERAL OPTIONS ##
 # Prevent file overwrite on stdout redirection
