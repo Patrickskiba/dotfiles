@@ -1,12 +1,14 @@
 #
 # ~/.bashrc
 #
+export PS1="\[\e[94m\]\u\[\e[m\] \[\e[32m\]\W\[\e[m\] \\$ "
+export EDITOR='nvim'
 
-alias vim='nvim'
+alias vim='$EDITOR'
 alias copycb='xclip -selection c'
 alias pastecb='xclip -selection c -o'
+alias ll='ls -alt'
 
-export PS1="\[\e[94m\]\u\[\e[m\] \[\e[32m\]\W\[\e[m\] \\$ "
 
 v() { find ~/Code | grep -v -E 'node_modules|\.git' | fzf | xargs -r $EDITOR; }
 
