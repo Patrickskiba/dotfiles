@@ -27,9 +27,13 @@ Plugin 'morhetz/gruvbox'
 
 Plugin 'sheerun/vim-polyglot'
 
+Plugin 'ctrlpvim/ctrlp.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()
 filetype plugin indent on  " allows auto-indenting depending on file type
 
 colorscheme gruvbox
 syntax enable
+
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
