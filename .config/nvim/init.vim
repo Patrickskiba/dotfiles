@@ -13,10 +13,7 @@ set autoindent              " indent a new line the same amount as the line just
 set number                  " add line numbers
 set nowrap                  " no word wrap
 set wildmode=longest,list   " get bash-like tab completions
-set clipboard=unnamedplus
-
-vnoremap <C-C> "+y
-map <C-p> "+P
+set autochdir               " automatically changes directory to files directory when using e
 
 filetype plugin indent on
 " set the runtime path to include Vundle and initialize
