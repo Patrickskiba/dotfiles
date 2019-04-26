@@ -10,9 +10,11 @@ alias pastecb='xclip -selection c -o'
 alias ll='ls -alt'
 
 
-v() { find ~/Code | grep -v -E 'node_modules|\.git' | fzf | xargs -r $EDITOR; }
+v() { find ~/Code | grep -v -E 'node_modules|\.git' | fzy | xargs -r $EDITOR; }
 
-c() { cd "$(find ~/ -type d | grep -v -E 'node_modules|\/\.' | fzf)"; }
+c() { cd "$(find ~/ -type d | grep -v -E 'node_modules|\/\.' | fzy)"; }
+
+nr() { npm run | grep -v -E '(Lifecycle included in)|(available via)|^$' | awk 'NR%2==0' | fzy | xargs -r npm run; }
 
 ## GENERAL OPTIONS ##
 # Prevent file overwrite on stdout redirection
