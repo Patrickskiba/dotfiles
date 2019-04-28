@@ -16,6 +16,8 @@ c() { cd "$(find ~/ -type d | grep -v -E 'node_modules|\/\.' | fzy)"; }
 
 nr() { npm run | grep -v -E '(Lifecycle included in)|(available via)|^$' | awk 'NR%2==0' | fzy | xargs -r npm run; }
 
+books() { find ~/Books/ | grep -E ".*\.pdf$|.*\.ps$|.*\.epub" | fzy | xargs -I {} zathura "{}" }
+
 ## GENERAL OPTIONS ##
 # Prevent file overwrite on stdout redirection
 # Use `>|` to force redirection to an existing file
