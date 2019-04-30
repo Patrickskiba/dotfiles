@@ -8,15 +8,16 @@ alias vim='$EDITOR'
 alias copycb='xclip -selection c'
 alias pastecb='xclip -selection c -o'
 alias ll='ls -alt'
+alias vimedit='vim ~/.config/nvim/init.vim'
+alias bashedit='vim ~/.bashrc'
 
 
-v() { find ~/Code | grep -v -E 'node_modules|\.git' | fzy | xargs -r $EDITOR; }
+v() { fd . $HOME/Code/ | grep -v -E 'node_modules|\.git' | fzy | xargs -r $EDITOR; }
 
-c() { cd "$(find ~/ -type d | grep -v -E 'node_modules|\/\.' | fzy)"; }
+c() { cd "$(fd -t d . $HOME | grep -v -E 'node_modules|\.git' | fzy)"; }
 
 nr() { npm run | grep -v -E '(Lifecycle included in)|(available via)|^$' | awk 'NR%2==0' | fzy | xargs -r npm run; }
-
-books() { find ~/Books/ | grep -E ".*\.pdf$|.*\.ps$|.*\.epub" | fzy | xargs -I {} zathura "{}" }
+books() { fd . $HOME/Books | grep -E ".*\.pdf$|.*\.ps$|.*\.epub" | fzy | xargs -I {} zathura "{}" ;}
 
 ## GENERAL OPTIONS ##
 # Prevent file overwrite on stdout redirection
@@ -88,3 +89,5 @@ bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 bind '"\e[C": forward-char'
 bind '"\e[D": backward-char'
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

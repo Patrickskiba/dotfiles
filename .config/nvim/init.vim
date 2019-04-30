@@ -12,26 +12,19 @@ set shiftwidth=4            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
 set number                  " add line numbers
 set nowrap                  " no word wrap
-set wildmode=longest,list   " get bash-like tab completions
-set autochdir               " automatically changes directory to files directory when using e
+set wildmode=longest,list,full   " get bash-like tab completions
+set number relativenumber
+
 
 filetype plugin indent on
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin('~/.config/nvim/bundle')
+call plug#begin('~/.vim/plugged')
+Plug 'morhetz/gruvbox'
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Plug 'sheerun/vim-polyglot'
 
-Plugin 'morhetz/gruvbox'
+Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 
-Plugin 'sheerun/vim-polyglot'
-
-Plugin 'ctrlpvim/ctrlp.vim'
-
-" All of your Plugins must be added before the following line
-call vundle#end()
-filetype plugin indent on  " allows auto-indenting depending on file type
+call plug#end()
 
 colorscheme gruvbox
 syntax enable
