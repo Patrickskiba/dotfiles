@@ -24,6 +24,8 @@ Plug 'sheerun/vim-polyglot'
 
 Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 
+Plug 'ctrlpvim/ctrlp.vim'
+
 call plug#end()
 
 colorscheme gruvbox
