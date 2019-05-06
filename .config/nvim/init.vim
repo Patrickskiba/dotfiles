@@ -26,9 +26,12 @@ Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 
 Plug 'ctrlpvim/ctrlp.vim'
 
+Plug 'scrooloose/nerdtree'
+
 call plug#end()
 
 colorscheme gruvbox
 syntax enable
 
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+map <C-n> :NERDTreeToggle<CR>
