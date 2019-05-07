@@ -5,6 +5,12 @@ for tran in "${transactions[@]}"
 do
     echo $tran
     read -p "Was this purchase made by Erin, Patrick or Both? (E/P/B) : " who
-    echo $yn
+    case $who in
+        [Ee]* ) echo "It was Erin!";;
+        [Pp]* ) echo "It was Patrick!";;
+        [Bb]* ) echo "Both did it";;
+    esac
+
+    CATEGORIY=$(awk 'BEGIN { print "Grocery\nResturant\nAlcohol\nBills\nRent\nEntertainment\nHome"}' | fzy)
 done
 
