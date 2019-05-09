@@ -12,7 +12,7 @@ alias vimedit='vim ~/.config/nvim/init.vim'
 alias bashedit='vim ~/.bashrc'
 
 
-v() { fd . $HOME/Code/ | grep -v -E 'node_modules|\.git' | fzy | xargs -r $EDITOR; }
+v() { fd . $HOME/ | grep -v -E 'node_modules|\.git' | fzy | xargs -r $EDITOR; }
 
 c() { cd "$(fd -t d . $HOME | grep -v -E 'node_modules|\.git' | fzy)"; }
 

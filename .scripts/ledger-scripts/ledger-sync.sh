@@ -6,20 +6,27 @@ do
     echo $tran
     read -p "Was this purchase made by Erin, Patrick or Both? (E/P/B) : " WHO
     case $WHO in
-        [Ee]* ) echo "It was Erin!";;
-        [Pp]* ) echo "It was Patrick!";;
-        [Bb]* ) echo "Both did it";;
+        [Ee]* ) WHO="Erin";;
+        [Pp]* ) WHO="Patrick";;
+        [Bb]* ) WHO="Both";;
     esac
 
-    CATEGORIY=$(awk 'BEGIN { print "Grocery\nResturant\nAlcohol\nBills\nRent\nEntertainment\nHome\nOther"}' | fzy)
+    CATEGORIY=$(awk 'BEGIN { print "Grocery\nResturant\nAlcohol\nBills\nRent\nEntertainment\nHome\nOther"}' | fzy |  tr -d '\n\r')
 
     case $CATEGORIY in
         Other) read -p "Enter Category : " CATEGORIY;;
     esac
 
-    CreditCard=$(awk 'BEGIN { print "CapitalOne\nAmex\nChase\nTravelAmex\nMarriott"}' | fzy)
+    CreditCard=$(awk 'BEGIN { print "CapitalOne\nAmex\nChase\nTravelAmex\nMarriott"}' | fzy |  tr -d '\n\r')
 
-    echo $CreditCard
+    DATE=$(echo $tran | awk -F ',' '{ print $1 }')
 
+    DESCRIPTION=$(echo $tran | awk -F ',' '{ print $2 }' | tr -d '\n\r')
+
+    AMOUNT=$(echo $tran | awk -F ',' '{ print $4 }' | tr -d '\n\r')
+
+    printf "$DATE * \"$DESCRIPTION\"\n" >> transactions.bean
+    printf "Expenses:$WHO:$CATEGORIY     $AMOUNT USD\n" >> transactions.bean
+    printf "Liabilities:$WHO:$CreditCard\n" >> transactions.bean
 done
 
