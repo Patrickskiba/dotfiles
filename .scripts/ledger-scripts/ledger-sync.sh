@@ -17,7 +17,7 @@ do
         Other) read -p "Enter Category : " CATEGORIY;;
     esac
 
-    CreditCard=$(awk 'BEGIN { print "CapitalOne\nAmex\nChase\nTravelAmex\nMarriott"}' | fzy |  tr -d '\n\r')
+    CreditCard=$(awk 'BEGIN { print "Amex\nCapitalOne\nChase\nTravelAmex\nMarriott"}' | fzy |  tr -d '\n\r')
 
     DATE=$(echo $tran | awk -F ',' '{ print $1 }')
 
@@ -25,8 +25,22 @@ do
 
     AMOUNT=$(echo $tran | awk -F ',' '{ print $4 }' | tr -d '\n\r')
 
-    printf "$DATE * \"$DESCRIPTION\"\n" >> transactions.bean
-    printf "Expenses:$WHO:$CATEGORIY     $AMOUNT USD\n" >> transactions.bean
-    printf "Liabilities:$WHO:$CreditCard\n" >> transactions.bean
+    if [ "$WHO" = "Erin" ] || [ "$WHO" = "Patrick" ]; then
+        printf "$DATE * \"$DESCRIPTION\"\n" >> transactions.bean
+        printf "Expenses:$WHO:$CATEGORIY     $AMOUNT USD\n" >> transactions.bean
+        printf "Liabilities:$WHO:$CreditCard\n" >> transactions.bean
+    fi
+
+    if [ "$WHO" = "Both" ]; then
+        SPLIT_AMOUNT=$(echo $AMOUNT | awk '{ print $0 / 2}')
+
+        printf "$DATE * \"$DESCRIPTION\"\n" >> transactions.bean
+        printf "Expenses:Patrick:$CATEGORIY     $SPLIT_AMOUNT USD\n" >> transactions.bean
+        printf "Liabilities:Patrick:$CreditCard\n\n" >> transactions.bean
+
+        printf "$DATE * \"$DESCRIPTION\"\n" >> transactions.bean
+        printf "Expenses:Erin:$CATEGORIY     $SPLIT_AMOUNT USD\n" >> transactions.bean
+        printf "Liabilities:Erin:$CreditCard\n" >> transactions.bean
+    fi
 done
 
