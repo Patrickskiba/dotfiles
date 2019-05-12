@@ -11,7 +11,7 @@ do
         [Bb]* ) WHO="Both";;
     esac
 
-    CATEGORIY=$(awk 'BEGIN { print "Grocery\nResturant\nAlcohol\nBills\nRent\nEntertainment\nHome\nOther"}' | fzy |  tr -d '\n\r')
+    CATEGORIY=$(awk 'BEGIN { print "Grocery\nResturant\nAlcohol\nBills\nRent\nEntertainment\nHome\nOther\nTransit\nClothing\nGifts\nGas"}' | fzy |  tr -d '\n\r')
 
     case $CATEGORIY in
         Other) read -p "Enter Category : " CATEGORIY;;
@@ -34,13 +34,13 @@ do
     if [ "$WHO" = "Both" ]; then
         SPLIT_AMOUNT=$(echo $AMOUNT | awk '{ print $0 / 2}')
 
-        printf "$DATE * \"$DESCRIPTION\"\n" >> transactions.bean
-        printf "Expenses:Patrick:$CATEGORIY     $SPLIT_AMOUNT USD\n" >> transactions.bean
-        printf "Liabilities:Patrick:$CreditCard\n\n" >> transactions.bean
+        printf "$DATE * \"$DESCRIPTION\"\n" >> ledger.dat
+        printf "Expenses:Patrick:$CATEGORIY     $SPLIT_AMOUNT USD\n" >> ledger.dat
+        printf "Liabilities:Patrick:$CreditCard\n\n" >> ledger.dat
 
-        printf "$DATE * \"$DESCRIPTION\"\n" >> transactions.bean
-        printf "Expenses:Erin:$CATEGORIY     $SPLIT_AMOUNT USD\n" >> transactions.bean
-        printf "Liabilities:Erin:$CreditCard\n" >> transactions.bean
+        printf "$DATE * \"$DESCRIPTION\"\n" >> ledger.dat
+        printf "Expenses:Erin:$CATEGORIY     $SPLIT_AMOUNT USD\n" >> ledger.dat
+        printf "Liabilities:Erin:$CreditCard\n" >> ledger.dat
     fi
 done
 
