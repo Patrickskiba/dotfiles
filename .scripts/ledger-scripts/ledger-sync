@@ -1,5 +1,5 @@
 IFS="\\"
-transactions=($(diff act.csv act2.csv | grep -E '^>' | sed 's/>\s//g' | awk -F ',' '{ print $1","$3","$4","$6"\\" }'))
+transactions=($(diff act.csv act2.csv | grep -E '^>' | sed 's/>\s//g' | awk -F ',' '{ print $1","$3","$4","$6"\\" }' | tac))
 
 for tran in "${transactions[@]}"
 do
@@ -27,20 +27,20 @@ do
 
     if [ "$WHO" = "Erin" ] || [ "$WHO" = "Patrick" ]; then
         printf "$DATE * \"$DESCRIPTION\"\n" >> transactions.bean
-        printf "Expenses:$WHO:$CATEGORIY     $AMOUNT USD\n" >> transactions.bean
-        printf "Liabilities:$WHO:$CreditCard\n" >> transactions.bean
+        printf "\tExpenses:$WHO:$CATEGORIY     $AMOUNT USD\n" >> transactions.bean
+        printf "\tLiabilities:$WHO:$CreditCard\n" >> transactions.bean
     fi
 
     if [ "$WHO" = "Both" ]; then
         SPLIT_AMOUNT=$(echo $AMOUNT | awk '{ print $0 / 2}')
 
         printf "$DATE * \"$DESCRIPTION\"\n" >> ledger.dat
-        printf "Expenses:Patrick:$CATEGORIY     $SPLIT_AMOUNT USD\n" >> ledger.dat
-        printf "Liabilities:Patrick:$CreditCard\n\n" >> ledger.dat
+        printf "\tExpenses:Patrick:$CATEGORIY     $SPLIT_AMOUNT USD\n" >> ledger.dat
+        printf "\tLiabilities:Patrick:$CreditCard\n\n" >> ledger.dat
 
         printf "$DATE * \"$DESCRIPTION\"\n" >> ledger.dat
-        printf "Expenses:Erin:$CATEGORIY     $SPLIT_AMOUNT USD\n" >> ledger.dat
-        printf "Liabilities:Erin:$CreditCard\n" >> ledger.dat
+        printf "\tExpenses:Erin:$CATEGORIY     $SPLIT_AMOUNT USD\n" >> ledger.dat
+        printf "\tLiabilities:Erin:$CreditCard\n" >> ledger.dat
     fi
 done
 
