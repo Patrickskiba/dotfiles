@@ -1,0 +1,3 @@
+#!/bin/sh
+
+cat ~/.bookmarks | awk 'BEGIN { FS = ","; ORS = "\n" } { print $2 }' | dmenu -l 10 -i
