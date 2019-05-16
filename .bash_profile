@@ -2,6 +2,7 @@
 
 export TERMINAL='st'
 export EDITOR='nvim'
+export BROWSER='firefox'
 
 export PATH="$PATH:$(du "$HOME/.scripts/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 

@@ -1,6 +1,8 @@
 #show-read-feeds no
 auto-reload yes
 
+external-url-viewer "urlscan -dc -r 'linkhandler {}'"
+
 bind-key j down
 bind-key k up
 bind-key j next articlelist
@@ -28,5 +30,5 @@ color listfocus_unread yellow default bold
 color info red black bold
 color article cyan default
 
-browser firefox
+browser linkhandler
 macro , open-in-browser
