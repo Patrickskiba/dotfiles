@@ -14,6 +14,7 @@ set number                  " add line numbers
 set nowrap                  " no word wrap
 set wildmode=longest,list,full   " get bash-like tab completions
 set number relativenumber
+set autochdir
 
 
 filetype plugin indent on
