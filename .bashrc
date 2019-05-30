@@ -11,6 +11,11 @@ alias ll='ls -alt'
 alias vimedit='vim ~/.config/nvim/init.vim'
 alias bashedit='vim ~/.bashrc'
 
+#node alias
+alias ns='node start'
+alias nt='node test'
+alias ntw='node run test:watch'
+
 
 v() { fd . $HOME/ | grep -v -E 'node_modules|\.git' | fzy | xargs -r $EDITOR; }
 
