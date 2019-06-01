@@ -16,11 +16,6 @@ alias ns='npm start'
 alias nt='npm test'
 alias ntw='npm run test:watch'
 
-alias vspawn='st bash -c "nvim ~/; bash -l"'
-
-
-v() { fd . $HOME/ | grep -v -E 'node_modules|\.git' | fzy | xargs -r $EDITOR; }
-
 c() { cd "$(fd -t d . $HOME | grep -v -E 'node_modules|\.git' | fzy)"; }
 
 nr() { npm run | grep -v -E '(Lifecycle included in)|(available via)|^$' | awk 'NR%2==0' | fzy | xargs -r npm run; }

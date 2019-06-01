@@ -1,0 +1,3 @@
+#!/bin/bash
+st bash -c "nvim $(fd . $HOME/Code/ | grep -v -E 'node_modules|\.git' | dmenu -l 10); bash -l"
+
