@@ -16,6 +16,8 @@ alias ns='npm start'
 alias nt='npm test'
 alias ntw='npm run test:watch'
 
+alias vspawn='st bash -c "nvim ~/; bash -l"'
+
 
 v() { fd . $HOME/ | grep -v -E 'node_modules|\.git' | fzy | xargs -r $EDITOR; }
 
