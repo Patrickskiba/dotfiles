@@ -13,8 +13,11 @@ alias bashedit='vim ~/.bashrc'
 
 #node alias
 alias ns='npm start'
+alias nsd='npm run start:dev'
 alias nt='npm test'
 alias ntw='npm run test:watch'
+
+alias mirrordisplay='xrandr --output DP-2 --auto --output DP-4 --auto --same-as DP-2'
 
 c() { cd "$(fd -t d . $HOME | grep -v -E 'node_modules|\.git' | fzy)"; }
 
