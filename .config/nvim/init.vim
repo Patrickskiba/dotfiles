@@ -100,6 +100,8 @@ map <C-n> :NERDTreeToggle<CR>
 colorscheme gruvbox
 syntax enable
 
+" hit esc on a quickfix window to close it
+autocmd FileType qf nnoremap <buffer><silent> <esc> :quit<cr>
 
 " ============================================================================ "
 " ===                    COC.NVIM SETTINGS.                                === "

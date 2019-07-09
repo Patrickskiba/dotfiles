@@ -15,7 +15,7 @@ alias bashedit='vim ~/.bashrc'
 alias ns='npm start'
 alias nsd='npm run start:dev'
 alias nt='npm test'
-alias ntu='npm test --updateSnapshot'
+alias ntu='npm test -- --updateSnapshot'
 alias ntw='npm run test:watch'
 
 alias mirrordisplay='xrandr --output DP-2 --auto --output DP-4 --auto --same-as DP-2'
