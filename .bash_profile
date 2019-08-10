@@ -11,3 +11,5 @@ export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$
 if [ "$(tty)" = "/dev/tty1" ]; then
 	pgrep -x i3 || exec startx
 fi
+
+[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
