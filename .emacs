@@ -1,18 +1,44 @@
-;;Hide all UI cruft
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
+(require 'use-package)
+
+(use-package gruvbox-theme
+  :ensure t)
+
+(load-theme 'gruvbox-dark-soft t)
+
+(use-package avy
+  :ensure t)
+
+(global-set-key (kbd "C-;") 'avy-goto-char-timer)
+(global-set-key (kbd "M-;") 'avy-goto-line)
+
+(use-package ace-window
+  :ensure t)
+
+(global-set-key (kbd "M-o") 'ace-window)
+
+(use-package counsel
+  :ensure t)
+
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(setq ivy-count-format "(%d/%d) ")
+
+(global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+
+;;Hide UI cruft
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-
-;;Enable line numbers
-(global-linum-mode 1)
-
-;; Lines 80 characters wide
-(setq fill-column 80)
-
-;;Enable fuzzy search everywhere
-(ido-mode 1)
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
 
 ;;Hide the splash screen
 (setq inhibit-startup-message t
@@ -23,7 +49,7 @@ inhibit-startup-echo-area-message t)
 
 ;;SANE DEFAULTS
 ;; Move files to trash when deleting
-(setq delete-by-moving-to-trash t)
+(setq delete-by-moving-to-trash t)      
 
 ;; Allow pasting selection outside of Emacs
 (setq x-select-enable-clipboard t)
@@ -81,10 +107,6 @@ inhibit-startup-echo-area-message t)
 ;; Never insert tabs
 (set-default 'indent-tabs-mode nil)
 
-;; Show me empty lines after buffer end
-(set-default 'indicate-empty-lines t)
-
-
 ;; Easily navigate sillycased words
 (global-subword-mode 1)
 
@@ -117,3 +139,15 @@ inhibit-startup-echo-area-message t)
 (setq ediff-diff-options "-w")
 (setq ediff-split-window-function 'split-window-horizontally)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages (quote (counsel ivy use-package gruvbox-theme ace-window))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
