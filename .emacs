@@ -1,7 +1,7 @@
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
 (require 'use-package)
 
@@ -32,8 +32,37 @@
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 
-(global-set-key (kbd "C-c g") 'counsel-git)
-(global-set-key (kbd "C-c j") 'counsel-git-grep)
+(global-set-key (kbd "C-c p") 'counsel-git)
+(global-set-key (kbd "C-c g") 'counsel-git-grep)
+
+(use-package yasnippet
+  :ensure t)
+(use-package lsp-mode
+  :hook (rjsx-mode . lsp)
+  :commands lsp)
+
+;; optionally
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package company-lsp :commands company-lsp)
+
+(use-package rjsx-mode
+  :ensure t)
+
+(add-to-list 'auto-mode-alist '("/.*\\.js\\'" . rjsx-mode))
+
+(use-package prettier-js
+  :ensure t)
+
+(add-hook 'rjsx-mode-hook 'prettier-js-mode)
+
+(setq prettier-js-args '(
+  "--trailing-comma" "all"
+  "--bracket-spacing" "true"
+  "--single-quote" "true"
+  "--no-semi" "true"
+  "--jsx-single-quote" "true"
+  "--no-bracket-spacing" "false"
+))
 
 ;;Hide UI cruft
 (menu-bar-mode -1)
@@ -144,7 +173,21 @@ inhibit-startup-echo-area-message t)
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (counsel ivy use-package gruvbox-theme ace-window))))
+ '(company-dabbrev-code-ignore-case nil)
+ '(company-dabbrev-downcase nil)
+ '(company-idle-delay 0.1)
+ '(js-indent-level 2)
+ '(js2-missing-semi-one-line-override nil)
+ '(js2-strict-missing-semi-warning nil)
+ '(lsp-ui-doc-alignment (quote window))
+ '(lsp-ui-doc-enable nil)
+ '(lsp-ui-sideline-enable nil)
+ '(package-selected-packages
+   (quote
+    (prettier-js rjsx-mode web-mode yasnippet company-lsp lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window)))
+ '(prettier-js-args
+   (quote
+    ("--trailing-comma" "all" "--bracket-spacing" "true" "true" "--no-semi" "true" "--jsx-single-quote" "true" "--no-bracket-spacing" "false"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
