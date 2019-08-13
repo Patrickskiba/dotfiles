@@ -76,6 +76,25 @@ inhibit-startup-echo-area-message t)
 ;;Emacs auto indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
+(defun vi-open-line-above ()
+  "Insert a newline above the current line and put point at beginning."
+  (interactive)
+  (unless (bolp)
+    (beginning-of-line))
+  (newline)
+  (forward-line -1)
+  (indent-according-to-mode))
+
+(defun vi-open-line-below ()
+  "Insert a newline below the current line and put point at beginning."
+  (interactive)
+  (unless (eolp)
+    (end-of-line))
+  (newline-and-indent))
+
+(define-key global-map (kbd "<M-return>") 'vi-open-line-above)
+(define-key global-map (kbd "<C-return>") 'vi-open-line-below)
+
 ;;SANE DEFAULTS
 ;; Move files to trash when deleting
 (setq delete-by-moving-to-trash t)      
@@ -184,13 +203,4 @@ inhibit-startup-echo-area-message t)
  '(lsp-ui-sideline-enable nil)
  '(package-selected-packages
    (quote
-    (prettier-js rjsx-mode web-mode yasnippet company-lsp lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window)))
- '(prettier-js-args
-   (quote
-    ("--trailing-comma" "all" "--bracket-spacing" "true" "true" "--no-semi" "true" "--jsx-single-quote" "true" "--no-bracket-spacing" "false"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+    (prettier-js rjsx-mode web-mode yasnippet company-lsp lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window))))
