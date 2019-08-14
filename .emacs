@@ -5,6 +5,12 @@
 
 (require 'use-package)
 
+(use-package general
+  :ensure t)
+
+(use-package which-key
+  :ensure t)
+
 (use-package gruvbox-theme
   :ensure t)
 
@@ -28,12 +34,22 @@
 (setq ivy-use-virtual-buffers t)
 (setq ivy-count-format "(%d/%d) ")
 
-(global-set-key (kbd "C-s") 'swiper)
-(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(general-define-key
+ :prefix "M-n"
+ "" '(nil :which-key "file prefix")
+ "s" '(swiper :whick-key "swiper")
+ "C-s" 'swiper
+ "M-x" 'counsel-M-x
+ "C-x C-f" 'counsel-find-file)
 
-(global-set-key (kbd "C-c p") 'counsel-git)
-(global-set-key (kbd "C-c g") 'counsel-git-grep)
+(general-create-definer my-leader-def
+  ;; :prefix my-leader
+  ;; or without a variable
+  :prefix "C-c")
+
+(my-leader-def
+ "C-c p" 'counsel-git
+ "C-c g" 'counsel-git-grep)
 
 (use-package yasnippet
   :ensure t)
@@ -203,4 +219,10 @@ inhibit-startup-echo-area-message t)
  '(lsp-ui-sideline-enable nil)
  '(package-selected-packages
    (quote
-    (prettier-js rjsx-mode web-mode yasnippet company-lsp lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window))))
+    (which-key whick-key use-key general hydra prettier-js rjsx-mode web-mode yasnippet company-lsp lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
