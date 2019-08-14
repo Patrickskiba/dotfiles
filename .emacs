@@ -3,13 +3,20 @@
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
+(global-unset-key (kbd "C-SPC"))
+(general-auto-unbind-keys t)
 (require 'use-package)
 
 (use-package general
   :ensure t)
 
 (use-package which-key
-  :ensure t)
+  :ensure t
+  :init
+  (which-key-mode)
+  :config
+  (setq which-key-sort-order 'which-key-key-order-alpha
+        which-key-idle-delay 0.25))
 
 (use-package gruvbox-theme
   :ensure t)
@@ -25,8 +32,6 @@
 (use-package ace-window
   :ensure t)
 
-(global-set-key (kbd "M-o") 'ace-window)
-
 (use-package counsel
   :ensure t)
 
@@ -35,12 +40,19 @@
 (setq ivy-count-format "(%d/%d) ")
 
 (general-define-key
- :prefix "M-n"
- "" '(nil :which-key "file prefix")
- "s" '(swiper :whick-key "swiper")
- "C-s" 'swiper
- "M-x" 'counsel-M-x
- "C-x C-f" 'counsel-find-file)
+ :prefix "C-SPC"
+ :keymaps 'global
+ "s" '(swiper :which-key "swiper")
+ "x" '(counsel-M-x :which-key "M-x")
+ "f" '(:ignore t :which-key "files")
+ "ff" '(counsel-find-file :which-key "find file")
+ "w" '(:ignore t :which-key "window")
+ "wo" '(ace-window :which-key "other window")
+ "ws" '(split-window-below :which-key "split window below")
+ "wv" '(split-window-right :which-key "split window vertically")
+ "w=" '(balance-windows :which-key "balance windows")
+ "wd" '(ace-delete-window :which-key "delete window")
+ "wD" '(ace-delete-other-windows :which-key "delete other windows"))
 
 (general-create-definer my-leader-def
   ;; :prefix my-leader
