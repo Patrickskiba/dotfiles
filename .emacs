@@ -4,8 +4,13 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
 (global-unset-key (kbd "C-SPC"))
+(global-unset-key (kbd "C-v"))
+
 (general-auto-unbind-keys t)
 (require 'use-package)
+
+(use-package change-inner
+  :ensure t)
 
 (use-package general
   :ensure t)
@@ -46,6 +51,11 @@
  "x" '(counsel-M-x :which-key "M-x")
  "f" '(:ignore t :which-key "files")
  "ff" '(counsel-find-file :which-key "find file")
+ "d" '(:ignore t :which-key "delete")
+ "di" '(change-inner :which-key "delete inner")
+ "do" '(change-outer :which-key "delete outer")
+ "h" '(:ignore t :which-key "highlight")
+ "hw" '(mark-word :which-key "word")
  "w" '(:ignore t :which-key "window")
  "wo" '(ace-window :which-key "other window")
  "ws" '(split-window-below :which-key "split window below")
@@ -53,15 +63,6 @@
  "w=" '(balance-windows :which-key "balance windows")
  "wd" '(ace-delete-window :which-key "delete window")
  "wD" '(ace-delete-other-windows :which-key "delete other windows"))
-
-(general-create-definer my-leader-def
-  ;; :prefix my-leader
-  ;; or without a variable
-  :prefix "C-c")
-
-(my-leader-def
- "C-c p" 'counsel-git
- "C-c g" 'counsel-git-grep)
 
 (use-package yasnippet
   :ensure t)
@@ -231,7 +232,7 @@ inhibit-startup-echo-area-message t)
  '(lsp-ui-sideline-enable nil)
  '(package-selected-packages
    (quote
-    (which-key whick-key use-key general hydra prettier-js rjsx-mode web-mode yasnippet company-lsp lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window))))
+    (change-inner which-key whick-key use-key general hydra prettier-js rjsx-mode web-mode yasnippet company-lsp lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
