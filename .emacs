@@ -3,10 +3,15 @@
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
+(cua-mode 1)
+
+(global-unset-key (kbd "<C-return>"))
 (global-unset-key (kbd "C-SPC"))
 (global-unset-key (kbd "C-v"))
 
 (general-auto-unbind-keys t)
+
+
 (require 'use-package)
 
 (use-package change-inner
@@ -34,6 +39,23 @@
 (global-set-key (kbd "C-;") 'avy-goto-char-timer)
 (global-set-key (kbd "M-;") 'avy-goto-line)
 
+(defun vi-open-line-above ()
+  "Insert a newline above the current line and put point at beginning."
+  (interactive)
+  (unless (bolp)
+    (beginning-of-line))
+  (newline)
+  (forward-line -1)
+  (indent-according-to-mode))
+
+(defun vi-open-line-below ()
+  "Insert a newline below the current line and put point at beginning."
+  (interactive)
+  (unless (eolp)
+    (end-of-line))
+  (newline-and-indent))
+
+
 (use-package ace-window
   :ensure t)
 
@@ -51,11 +73,20 @@
  "x" '(counsel-M-x :which-key "M-x")
  "f" '(:ignore t :which-key "files")
  "ff" '(counsel-find-file :which-key "find file")
+ "o" '(vi-open-line-below :which-key "line below")
+ "O" '(vi-open-line-above :which-key "line above")
  "d" '(:ignore t :which-key "delete")
  "di" '(change-inner :which-key "delete inner")
  "do" '(change-outer :which-key "delete outer")
+ "dr" '(avy-kill-region :which-key "delete region")
+ "dl" '(avy-kill-whole-line :which-key "delete line")
  "h" '(:ignore t :which-key "highlight")
  "hw" '(mark-word :which-key "word")
+ "b" '(switch-to-buffer :which-key "switch buffer")
+ "B" '(list-buffers :which-key "list bufferes")
+ "c" '(:ignore t :which-key "copy")
+ "cr" '(avy-kill-ring-save-region :which-key "copy region")
+ "cl" '(avy-kill-ring-save-whole-line :which-key "copy line")
  "w" '(:ignore t :which-key "window")
  "wo" '(ace-window :which-key "other window")
  "ws" '(split-window-below :which-key "split window below")
@@ -66,6 +97,7 @@
 
 (use-package yasnippet
   :ensure t)
+
 (use-package lsp-mode
   :hook (rjsx-mode . lsp)
   :commands lsp)
@@ -105,24 +137,6 @@ inhibit-startup-echo-area-message t)
 ;;Emacs auto indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
-(defun vi-open-line-above ()
-  "Insert a newline above the current line and put point at beginning."
-  (interactive)
-  (unless (bolp)
-    (beginning-of-line))
-  (newline)
-  (forward-line -1)
-  (indent-according-to-mode))
-
-(defun vi-open-line-below ()
-  "Insert a newline below the current line and put point at beginning."
-  (interactive)
-  (unless (eolp)
-    (end-of-line))
-  (newline-and-indent))
-
-(define-key global-map (kbd "<M-return>") 'vi-open-line-above)
-(define-key global-map (kbd "<C-return>") 'vi-open-line-below)
 
 ;;SANE DEFAULTS
 ;; Move files to trash when deleting
