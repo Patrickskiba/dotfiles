@@ -5,17 +5,34 @@
 
 (cua-mode 1)
 
-(global-unset-key (kbd "<C-return>"))
 (global-unset-key (kbd "C-SPC"))
-(global-unset-key (kbd "C-v"))
-
 (general-auto-unbind-keys t)
 
+(setq enable-recursive-minibuffers t)
 
 (require 'use-package)
 
 (use-package change-inner
   :ensure t)
+
+(use-package hydra
+  :ensure t)
+
+(defhydra hydra-zoom ()
+  "zoom"
+  ("g" text-scale-increase "in")
+  ("l" text-scale-decrease "out"))
+
+(defhydra hydra-window-move ()
+  "window move"
+  ("C-n" scroll-up "down")
+  ("C-p" scroll-down "up"))
+
+(use-package projectile
+  :ensure t)
+
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+(projectile-mode +1)
 
 (use-package general
   :ensure t)
@@ -37,7 +54,7 @@
   :ensure t)
 
 (global-set-key (kbd "C-;") 'avy-goto-char-timer)
-(global-set-key (kbd "M-;") 'avy-goto-line)
+(global-set-key (kbd "C-j") 'avy-goto-line)
 
 (defun vi-open-line-above ()
   "Insert a newline above the current line and put point at beginning."
@@ -55,7 +72,6 @@
     (end-of-line))
   (newline-and-indent))
 
-
 (use-package ace-window
   :ensure t)
 
@@ -69,8 +85,13 @@
 (general-define-key
  :prefix "C-SPC"
  :keymaps 'global
+ "C-n" '(hydra-window-move/scroll-up :which-key "down")
+ "C-p" '(hydra-window-move/scroll-down :which-key "up")
  "s" '(swiper :which-key "swiper")
- "x" '(counsel-M-x :which-key "M-x")
+ "a" '(counsel-M-x :which-key "funcs")
+ "p" '(:ignore t :which-key "project")
+ "pp" '(counsel-git :which-key "open file")
+ "pg" '(counsel-git-grep :which-key "grep project")
  "f" '(:ignore t :which-key "files")
  "ff" '(counsel-find-file :which-key "find file")
  "o" '(vi-open-line-below :which-key "line below")
@@ -82,6 +103,7 @@
  "dl" '(avy-kill-whole-line :which-key "delete line")
  "h" '(:ignore t :which-key "highlight")
  "hw" '(mark-word :which-key "word")
+ "he" '(er/expand-region :which-key "expanding")
  "b" '(switch-to-buffer :which-key "switch buffer")
  "B" '(list-buffers :which-key "list bufferes")
  "c" '(:ignore t :which-key "copy")
@@ -93,7 +115,9 @@
  "wv" '(split-window-right :which-key "split window vertically")
  "w=" '(balance-windows :which-key "balance windows")
  "wd" '(ace-delete-window :which-key "delete window")
- "wD" '(ace-delete-other-windows :which-key "delete other windows"))
+ "wD" '(ace-delete-other-windows :which-key "delete other windows")
+ "t" '(:ignore t :which-key "text")
+ "tz" '(hydra-zoom/body :which-key "zoom"))
 
 (use-package yasnippet
   :ensure t)
@@ -246,7 +270,7 @@ inhibit-startup-echo-area-message t)
  '(lsp-ui-sideline-enable nil)
  '(package-selected-packages
    (quote
-    (change-inner which-key whick-key use-key general hydra prettier-js rjsx-mode web-mode yasnippet company-lsp lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window))))
+    (projectile change-inner which-key whick-key use-key general hydra prettier-js rjsx-mode web-mode yasnippet company-lsp lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
