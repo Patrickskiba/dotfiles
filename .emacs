@@ -28,11 +28,6 @@
   ("C-n" scroll-up "down")
   ("C-p" scroll-down "up"))
 
-(use-package projectile
-  :ensure t)
-
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-(projectile-mode +1)
 
 (use-package general
   :ensure t)
@@ -75,12 +70,23 @@
 (use-package ace-window
   :ensure t)
 
+
+(use-package projectile
+  :ensure t)
+
+(projectile-mode +1)
+
 (use-package counsel
   :ensure t)
 
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
 (setq ivy-count-format "(%d/%d) ")
+
+(use-package counsel-projectile
+  :ensure t)
+
+(counsel-projectile-mode 1)
 
 (general-define-key
  :prefix "C-SPC"
@@ -89,11 +95,10 @@
  "C-p" '(hydra-window-move/scroll-down :which-key "up")
  "s" '(swiper :which-key "swiper")
  "a" '(counsel-M-x :which-key "funcs")
- "p" '(:ignore t :which-key "project")
- "pp" '(counsel-git :which-key "open file")
- "pg" '(counsel-git-grep :which-key "grep project")
+ "p" '(projectile-command-map :which-key "project")
  "f" '(:ignore t :which-key "files")
  "ff" '(counsel-find-file :which-key "find file")
+ "fp" '(counsel-git :which-key "open file")
  "o" '(vi-open-line-below :which-key "line below")
  "O" '(vi-open-line-above :which-key "line above")
  "d" '(:ignore t :which-key "delete")
@@ -270,7 +275,7 @@ inhibit-startup-echo-area-message t)
  '(lsp-ui-sideline-enable nil)
  '(package-selected-packages
    (quote
-    (projectile change-inner which-key whick-key use-key general hydra prettier-js rjsx-mode web-mode yasnippet company-lsp lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window))))
+    (counsel-projectile projectile change-inner which-key whick-key use-key general hydra prettier-js rjsx-mode web-mode yasnippet company-lsp lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
