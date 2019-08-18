@@ -3,31 +3,16 @@
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
-(cua-mode 1)
-
-(global-unset-key (kbd "C-SPC"))
 (general-auto-unbind-keys t)
 
 (setq enable-recursive-minibuffers t)
 
 (require 'use-package)
 
-(use-package change-inner
+(use-package evil
   :ensure t)
 
-(use-package hydra
-  :ensure t)
-
-(defhydra hydra-zoom ()
-  "zoom"
-  ("g" text-scale-increase "in")
-  ("l" text-scale-decrease "out"))
-
-(defhydra hydra-window-move ()
-  "window move"
-  ("C-n" scroll-up "down")
-  ("C-p" scroll-down "up"))
-
+(evil-mode 1)
 
 (use-package general
   :ensure t)
@@ -51,25 +36,8 @@
 (global-set-key (kbd "C-;") 'avy-goto-char-timer)
 (global-set-key (kbd "C-j") 'avy-goto-line)
 
-(defun vi-open-line-above ()
-  "Insert a newline above the current line and put point at beginning."
-  (interactive)
-  (unless (bolp)
-    (beginning-of-line))
-  (newline)
-  (forward-line -1)
-  (indent-according-to-mode))
-
-(defun vi-open-line-below ()
-  "Insert a newline below the current line and put point at beginning."
-  (interactive)
-  (unless (eolp)
-    (end-of-line))
-  (newline-and-indent))
-
 (use-package ace-window
   :ensure t)
-
 
 (use-package projectile
   :ensure t)
@@ -89,31 +57,15 @@
 (counsel-projectile-mode 1)
 
 (general-define-key
- :prefix "C-SPC"
+ :prefix "SPC"
+ :states 'normal
  :keymaps 'global
- "C-n" '(hydra-window-move/scroll-up :which-key "down")
- "C-p" '(hydra-window-move/scroll-down :which-key "up")
  "s" '(swiper :which-key "swiper")
  "a" '(counsel-M-x :which-key "funcs")
  "p" '(projectile-command-map :which-key "project")
- "f" '(:ignore t :which-key "files")
- "ff" '(counsel-find-file :which-key "find file")
- "fp" '(counsel-git :which-key "open file")
- "o" '(vi-open-line-below :which-key "line below")
- "O" '(vi-open-line-above :which-key "line above")
- "d" '(:ignore t :which-key "delete")
- "di" '(change-inner :which-key "delete inner")
- "do" '(change-outer :which-key "delete outer")
- "dr" '(avy-kill-region :which-key "delete region")
- "dl" '(avy-kill-whole-line :which-key "delete line")
- "h" '(:ignore t :which-key "highlight")
- "hw" '(mark-word :which-key "word")
- "he" '(er/expand-region :which-key "expanding")
+ "f" '(counsel-find-file :which-key "find file")
  "b" '(switch-to-buffer :which-key "switch buffer")
  "B" '(list-buffers :which-key "list bufferes")
- "c" '(:ignore t :which-key "copy")
- "cr" '(avy-kill-ring-save-region :which-key "copy region")
- "cl" '(avy-kill-ring-save-whole-line :which-key "copy line")
  "w" '(:ignore t :which-key "window")
  "wo" '(ace-window :which-key "other window")
  "ws" '(split-window-below :which-key "split window below")
@@ -124,16 +76,14 @@
  "t" '(:ignore t :which-key "text")
  "tz" '(hydra-zoom/body :which-key "zoom"))
 
-(use-package yasnippet
-  :ensure t)
-
 (use-package lsp-mode
   :hook (rjsx-mode . lsp)
   :commands lsp)
 
+(setq lsp-enable-snippet nil)
+
 ;; optionally
 (use-package lsp-ui :commands lsp-ui-mode)
-(use-package company-lsp :commands company-lsp)
 
 (use-package rjsx-mode
   :ensure t)
@@ -143,7 +93,7 @@
 (use-package prettier-js
   :ensure t)
 
-(add-hook 'rjsx-mode-hook 'prettier-js-mode)
+(add-hook 'js-mode-hook 'prettier-js-mode)
 
 (setq prettier-js-args '(
   "--trailing-comma" "all"
@@ -153,6 +103,7 @@
   "--jsx-single-quote" "true"
   "--no-bracket-spacing" "false"
 ))
+
 
 ;;Hide UI cruft
 (menu-bar-mode -1)
@@ -165,7 +116,6 @@ inhibit-startup-echo-area-message t)
 
 ;;Emacs auto indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
-
 
 ;;SANE DEFAULTS
 ;; Move files to trash when deleting
@@ -259,14 +209,12 @@ inhibit-startup-echo-area-message t)
 (setq ediff-diff-options "-w")
 (setq ediff-split-window-function 'split-window-horizontally)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-dabbrev-code-ignore-case nil)
- '(company-dabbrev-downcase nil)
- '(company-idle-delay 0.1)
  '(js-indent-level 2)
  '(js2-missing-semi-one-line-override nil)
  '(js2-strict-missing-semi-warning nil)
@@ -275,7 +223,7 @@ inhibit-startup-echo-area-message t)
  '(lsp-ui-sideline-enable nil)
  '(package-selected-packages
    (quote
-    (counsel-projectile projectile change-inner which-key whick-key use-key general hydra prettier-js rjsx-mode web-mode yasnippet company-lsp lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window))))
+    (evil xah-fly-keys counsel-projectile projectile change-inner which-key whick-key use-key general hydra prettier-js rjsx-mode web-mode yasnippet lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
