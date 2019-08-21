@@ -3,6 +3,8 @@
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
+(setq backup-directory-alist '(("." . "~/.emacs.d/backup")))
+
 (general-auto-unbind-keys t)
 
 (setq enable-recursive-minibuffers t)
@@ -13,6 +15,8 @@
   :ensure t)
 
 (evil-mode 1)
+
+(global-set-key (kbd "C-u") 'evil-scroll-up)
 
 (use-package general
   :ensure t)
@@ -32,9 +36,6 @@
 
 (use-package avy
   :ensure t)
-
-(global-set-key (kbd "C-;") 'avy-goto-char-timer)
-(global-set-key (kbd "C-j") 'avy-goto-line)
 
 (use-package ace-window
   :ensure t)
@@ -64,6 +65,8 @@
  "a" '(counsel-M-x :which-key "funcs")
  "p" '(projectile-command-map :which-key "project")
  "f" '(counsel-find-file :which-key "find file")
+ "j" '(avy-goto-char-timer :which-key "go to char")
+ "l" '(avy-goto-line :which-key "jump to line")
  "b" '(switch-to-buffer :which-key "switch buffer")
  "B" '(list-buffers :which-key "list bufferes")
  "w" '(:ignore t :which-key "window")
@@ -221,9 +224,12 @@ inhibit-startup-echo-area-message t)
  '(lsp-ui-doc-alignment (quote window))
  '(lsp-ui-doc-enable nil)
  '(lsp-ui-sideline-enable nil)
+ '(org-agenda-files (quote ("~/Dropbox")))
  '(package-selected-packages
    (quote
-    (evil xah-fly-keys counsel-projectile projectile change-inner which-key whick-key use-key general hydra prettier-js rjsx-mode web-mode yasnippet lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window))))
+    (evil xah-fly-keys counsel-projectile projectile change-inner which-key whick-key use-key general hydra prettier-js rjsx-mode web-mode yasnippet lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window)))
+ '(projectile-git-command
+   "comm -23 <(git ls-files -co --exclude-standard | sort) <(git ls-files -d | sort) | tr '\\n' '\\0'"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
