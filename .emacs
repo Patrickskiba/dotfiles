@@ -57,6 +57,9 @@
 
 (counsel-projectile-mode 1)
 
+(use-package smex
+  :ensure t)
+
 (general-define-key
  :prefix "SPC"
  :states 'normal
@@ -227,7 +230,7 @@ inhibit-startup-echo-area-message t)
  '(org-agenda-files (quote ("~/Dropbox")))
  '(package-selected-packages
    (quote
-    (evil xah-fly-keys counsel-projectile projectile change-inner which-key whick-key use-key general hydra prettier-js rjsx-mode web-mode yasnippet lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window)))
+    (smex evil xah-fly-keys counsel-projectile projectile change-inner which-key whick-key use-key general hydra prettier-js rjsx-mode web-mode yasnippet lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window)))
  '(projectile-git-command
    "comm -23 <(git ls-files -co --exclude-standard | sort) <(git ls-files -d | sort) | tr '\\n' '\\0'"))
 (custom-set-faces
