@@ -10,26 +10,57 @@
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup")))
 
-(general-auto-unbind-keys t)
-
 (setq enable-recursive-minibuffers t)
 
 (require 'use-package)
 
 (use-package flycheck
+  :ensure t
+  :config
+  (global-flycheck-mode))
+
+
+(use-package tide
   :ensure t)
 
-(global-flycheck-mode)
+(defun setup-tide-mode ()
+  "Setup function for tide."
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1))
+
+
+(defvar company-tooltip-align-annotations)
+(setq company-tooltip-align-annotations t)
+
+(add-hook 'js-mode-hook #'setup-tide-mode)
+
+(use-package rainbow-delimiters
+  :ensure t
+  :hook (prog-mode . rainbow-delimiters-mode))
+
 
 (use-package evil
-  :ensure t)
+  :ensure t
+  :init
+  (setq evil-want-keybinding nil evil-want-C-u-scroll t)
+  :config
+  (evil-mode 1))
 
-(evil-mode 1)
-
-(global-set-key (kbd "C-u") 'evil-scroll-up)
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :init
+  :config
+  (evil-collection-init t))
 
 (use-package general
-  :ensure t)
+  :ensure t
+  :config
+  (general-auto-unbind-keys t))
 
 (use-package which-key
   :ensure t
@@ -39,10 +70,17 @@
   (setq which-key-sort-order 'which-key-key-order-alpha
         which-key-idle-delay 0.25))
 
-(use-package gruvbox-theme
+(use-package magit
   :ensure t)
 
-(load-theme 'gruvbox-dark-soft t)
+(use-package evil-magit
+  :ensure t)
+
+(use-package gruvbox-theme
+  :ensure t
+  :config
+  (load-theme 'gruvbox-dark-soft t))
+
 
 (use-package avy
   :ensure t)
@@ -51,21 +89,22 @@
   :ensure t)
 
 (use-package projectile
-  :ensure t)
-
-(projectile-mode +1)
+  :ensure t
+  :config
+  (projectile-mode +1))
 
 (use-package counsel
-  :ensure t)
+  :ensure t
+  :init
+  (setq ivy-use-virtual-buffers t ivy-count-format "(%d/%d) ")
+  :config
+  (ivy-mode 1))
 
-(ivy-mode 1)
-(setq ivy-use-virtual-buffers t)
-(setq ivy-count-format "(%d/%d) ")
 
 (use-package counsel-projectile
-  :ensure t)
-
-(counsel-projectile-mode 1)
+  :ensure t
+  :config
+  (counsel-projectile-mode 1))
 
 (use-package smex
   :ensure t)
@@ -93,19 +132,15 @@
  "tz" '(hydra-zoom/body :which-key "zoom"))
 
 (use-package prettier-js
-  :ensure t)
-
-(add-hook 'js-mode-hook 'prettier-js-mode)
-
-(setq prettier-js-args '(
-  "--trailing-comma" "all"
+  :ensure t
+  :hook (js-mode . prettier-js-mode)
+  :init
+  (setq prettier-js-args '(
+  "--trailing-comma" "none"
   "--bracket-spacing" "true"
   "--single-quote" "true"
   "--no-semi" "true"
-  "--jsx-single-quote" "true"
-  "--no-bracket-spacing" "false"
-))
-
+  "--jsx-single-quote" "true")))
 
 ;;Hide UI cruft
 (menu-bar-mode -1)
@@ -130,7 +165,10 @@ inhibit-startup-echo-area-message t)
 (global-auto-revert-mode 1)
 
 ;; Also auto refresh dired, but be quiet about it
+(defvar global-auto-revert-non-file-buffers)
 (setq global-auto-revert-non-file-buffers t)
+
+(defvar auto-revert-verbose)
 (setq auto-revert-verbose nil)
 
 ;; Show keystrokes in progress
@@ -163,10 +201,12 @@ inhibit-startup-echo-area-message t)
 (setq-default transient-mark-mode t)
 
 ;; Don't highlight matches with jump-char - it's distracting
+(defvar jump-char-lazy-highlight-face)
 (setq jump-char-lazy-highlight-face nil)
 
 ;; Save a list of recent files visited. (open recent file with C-x f)
 (recentf-mode 1)
+(defvar recentf-max-saved-items)
 (setq recentf-max-saved-items 100) ;; just 20 is too recent
 
 ;; Save minibuffer history
@@ -189,12 +229,14 @@ inhibit-startup-echo-area-message t)
 (setq enable-recursive-minibuffers t)
 
 ;; Don't be so stingy on the memory, we have lots now. It's the distant future.
-(setq gc-cons-threshold 20000000)
+(setq gc-cons-threshold 200000000)
 
 ;; org-mode: Don't ruin S-arrow to switch windows please (use M-+ and M-- instead to toggle)
+(defvar org-replace-disputed-keys)
 (setq org-replace-disputed-keys t)
 
 ;; Fontify org-mode code blocks
+(defvar org-src-fontify-natively)
 (setq org-src-fontify-natively t)
 
 ;; Sentences do not need double spaces to end. Period.
@@ -208,8 +250,13 @@ inhibit-startup-echo-area-message t)
 (setq uniquify-buffer-name-style 'forward)
 
 ;; A saner ediff
+(defvar ediff-diff-options)
 (setq ediff-diff-options "-w")
+
+(defvar ediff-split-window-function)
 (setq ediff-split-window-function 'split-window-horizontally)
+
+(defvar ediff-window-setup-function)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
 (custom-set-variables
@@ -222,7 +269,7 @@ inhibit-startup-echo-area-message t)
  '(js2-strict-missing-semi-warning nil)
  '(org-agenda-files '("~/Dropbox"))
  '(package-selected-packages
-   '(flycheck smex evil xah-fly-keys counsel-projectile projectile change-inner which-key whick-key use-key general hydra prettier-js rjsx-mode web-mode yasnippet lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window))
+   '(evil-magit magit evil-collection rainbow-delimiters tide flycheck smex evil counsel-projectile projectile which-key general prettier-js web-mode counsel ivy use-package gruvbox-theme ace-window))
  '(projectile-git-command
    "comm -23 <(git ls-files -co --exclude-standard | sort) <(git ls-files -d | sort) | tr '\\n' '\\0'"))
 (custom-set-faces
