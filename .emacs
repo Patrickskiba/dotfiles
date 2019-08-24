@@ -1,5 +1,10 @@
-(require 'package)
+;;; .emacs --- Patrick Skiba
+;;; Commentary:
+;; This file contains my Emacs configation
+;;
+;;; Code:
 (package-initialize)
+(require 'package)
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
@@ -10,6 +15,11 @@
 (setq enable-recursive-minibuffers t)
 
 (require 'use-package)
+
+(use-package flycheck
+  :ensure t)
+
+(global-flycheck-mode)
 
 (use-package evil
   :ensure t)
@@ -82,20 +92,6 @@
  "t" '(:ignore t :which-key "text")
  "tz" '(hydra-zoom/body :which-key "zoom"))
 
-(use-package lsp-mode
-  :hook (rjsx-mode . lsp)
-  :commands lsp)
-
-(setq lsp-enable-snippet nil)
-
-;; optionally
-(use-package lsp-ui :commands lsp-ui-mode)
-
-(use-package rjsx-mode
-  :ensure t)
-
-(add-to-list 'auto-mode-alist '("/.*\\.js\\'" . rjsx-mode))
-
 (use-package prettier-js
   :ensure t)
 
@@ -125,10 +121,10 @@ inhibit-startup-echo-area-message t)
 
 ;;SANE DEFAULTS
 ;; Move files to trash when deleting
-(setq delete-by-moving-to-trash t)      
+(setq delete-by-moving-to-trash t)
 
 ;; Allow pasting selection outside of Emacs
-(setq x-select-enable-clipboard t)
+(setq select-enable-clipboard t)
 
 ;; Auto refresh buffers
 (global-auto-revert-mode 1)
@@ -224,13 +220,9 @@ inhibit-startup-echo-area-message t)
  '(js-indent-level 2)
  '(js2-missing-semi-one-line-override nil)
  '(js2-strict-missing-semi-warning nil)
- '(lsp-ui-doc-alignment (quote window))
- '(lsp-ui-doc-enable nil)
- '(lsp-ui-sideline-enable nil)
- '(org-agenda-files (quote ("~/Dropbox")))
+ '(org-agenda-files '("~/Dropbox"))
  '(package-selected-packages
-   (quote
-    (smex evil xah-fly-keys counsel-projectile projectile change-inner which-key whick-key use-key general hydra prettier-js rjsx-mode web-mode yasnippet lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window)))
+   '(flycheck smex evil xah-fly-keys counsel-projectile projectile change-inner which-key whick-key use-key general hydra prettier-js rjsx-mode web-mode yasnippet lsp-ui lsp-javascript-typescript spinner lsp-mode counsel ivy use-package gruvbox-theme ace-window))
  '(projectile-git-command
    "comm -23 <(git ls-files -co --exclude-standard | sort) <(git ls-files -d | sort) | tr '\\n' '\\0'"))
 (custom-set-faces
@@ -239,3 +231,5 @@ inhibit-startup-echo-area-message t)
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;;; .emacs ends here
