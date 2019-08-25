@@ -8,11 +8,19 @@
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
+;; set transparency
+(set-frame-parameter (selected-frame) 'alpha '(95 90))
+(add-to-list 'default-frame-alist '(alpha 95 90))
+
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup")))
 
 (setq enable-recursive-minibuffers t)
 
 (require 'use-package)
+
+(use-package doom-modeline
+      :ensure t
+      :hook (after-init . doom-modeline-mode))
 
 (use-package flycheck
   :ensure t
@@ -46,16 +54,9 @@
 (use-package evil
   :ensure t
   :init
-  (setq evil-want-keybinding nil evil-want-C-u-scroll t)
+  (setq evil-want-C-u-scroll t)
   :config
   (evil-mode 1))
-
-(use-package evil-collection
-  :after evil
-  :ensure t
-  :init
-  :config
-  (evil-collection-init t))
 
 (use-package general
   :ensure t
@@ -76,10 +77,15 @@
 (use-package evil-magit
   :ensure t)
 
-(use-package gruvbox-theme
+(use-package doom-themes
   :ensure t
+  :init
+  (setq doom-themes-enable-bold t
+      doom-themes-enable-italic t)
   :config
-  (load-theme 'gruvbox-dark-soft t))
+  (load-theme 'doom-one t)
+  (doom-themes-visual-bell-config)
+  (doom-themes-org-config))
 
 
 (use-package avy
@@ -264,12 +270,14 @@ inhibit-startup-echo-area-message t)
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("34c99997eaa73d64b1aaa95caca9f0d64229871c200c5254526d0062f8074693" "9c27124b3a653d43b3ffa088cd092c34f3f82296cf0d5d4f719c0c0817e1afa6" "ab9456aaeab81ba46a815c00930345ada223e1e7c7ab839659b382b52437b9ea" "1a6d627434899f6d21e35b85fee62079db55ef04ecd9b70b82e5d475406d9c69" default))
  '(js-indent-level 2)
  '(js2-missing-semi-one-line-override nil)
  '(js2-strict-missing-semi-warning nil)
  '(org-agenda-files '("~/Dropbox"))
  '(package-selected-packages
-   '(evil-magit magit evil-collection rainbow-delimiters tide flycheck smex evil counsel-projectile projectile which-key general prettier-js web-mode counsel ivy use-package gruvbox-theme ace-window))
+   '(doom-themes doom-modeline evil-magit magit evil-collection rainbow-delimiters tide flycheck smex evil counsel-projectile projectile which-key general prettier-js web-mode counsel ivy use-package gruvbox-theme ace-window))
  '(projectile-git-command
    "comm -23 <(git ls-files -co --exclude-standard | sort) <(git ls-files -d | sort) | tr '\\n' '\\0'"))
 (custom-set-faces
