@@ -9,8 +9,8 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
 ;; set transparency
-(set-frame-parameter (selected-frame) 'alpha '(95 90))
-(add-to-list 'default-frame-alist '(alpha 95 90))
+(set-frame-parameter (selected-frame) 'alpha '(99 90))
+(add-to-list 'default-frame-alist '(alpha 99 90))
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup")))
 
@@ -27,6 +27,11 @@
   :config
   (global-flycheck-mode))
 
+(use-package company
+  :ensure t
+  :config
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous))
 
 (use-package tide
   :ensure t)
@@ -38,7 +43,8 @@
   (flycheck-mode +1)
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
   (eldoc-mode +1)
-  (tide-hl-identifier-mode +1))
+  (tide-hl-identifier-mode +1)
+  (company-mode +1))
 
 
 (defvar company-tooltip-align-annotations)
@@ -277,7 +283,7 @@ inhibit-startup-echo-area-message t)
  '(js2-strict-missing-semi-warning nil)
  '(org-agenda-files '("~/Dropbox"))
  '(package-selected-packages
-   '(doom-themes doom-modeline evil-magit magit evil-collection rainbow-delimiters tide flycheck smex evil counsel-projectile projectile which-key general prettier-js web-mode counsel ivy use-package gruvbox-theme ace-window))
+   '(company-mode doom-themes doom-modeline evil-magit magit evil-collection rainbow-delimiters tide flycheck smex evil counsel-projectile projectile which-key general prettier-js web-mode counsel ivy use-package gruvbox-theme ace-window))
  '(projectile-git-command
    "comm -23 <(git ls-files -co --exclude-standard | sort) <(git ls-files -d | sort) | tr '\\n' '\\0'"))
 (custom-set-faces

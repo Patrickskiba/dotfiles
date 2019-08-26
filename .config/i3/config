@@ -7,6 +7,7 @@ font pango:monospace 8
 
 # startup
 exec --no-startup-id xcompmgr
+exec --no-startup-id dropbox start
 exec --no-startup-id xwallpaper --zoom ~/.config/wallpaper.jpg
 
 # Volume keys
