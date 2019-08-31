@@ -1,0 +1,19 @@
+#!/bin/sh
+
+BOOK_PATH=$(fd . $HOME/Books | grep -E ".*\.pdf$|.*\.ps$|.*\.epub" | dmenu -l 20)
+
+if [ ${BOOK_PATH: -4} == ".pdf" ]; then
+    zathura "$BOOK_PATH"
+fi
+
+if [ ${BOOK_PATH: -3} == ".ps" ]; then
+    zathura "$BOOK_PATH"
+fi
+
+if [ ${BOOK_PATH: -5} == ".epub" ]; then
+    foliate "$BOOK_PATH"
+fi
+
+if [ ${BOOK_PATH: -6} == ".epub3" ]; then
+    foliate "$BOOK_PATH"
+fi

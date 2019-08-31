@@ -23,9 +23,8 @@ alias mirrordisplay='xrandr --output DP-2 --auto --output DP-4 --auto --same-as 
 c() { cd "$(fd -t d . $HOME | grep -v -E 'node_modules|\.git' | fzy)"; }
 
 nr() { npm run | grep -v -E '(Lifecycle included in)|(available via)|^$' | awk 'NR%2==0' | fzy | xargs -r npm run; }
-books() { fd . $HOME/Books | grep -E ".*\.pdf$|.*\.ps$|.*\.epub" | fzy | xargs -I {} zathura "{}" ;}
 
-## GENERAL OPTIONS ##
+## General OPTIONS ##
 # Prevent file overwrite on stdout redirection
 # Use `>|` to force redirection to an existing file
 set -o noclobber
@@ -96,4 +95,4 @@ bind '"\e[B": history-search-forward'
 bind '"\e[C": forward-char'
 bind '"\e[D": backward-char'
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/bin/tools:$PATH"
