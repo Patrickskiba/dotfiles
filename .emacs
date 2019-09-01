@@ -89,10 +89,11 @@
   (setq doom-themes-enable-bold t
       doom-themes-enable-italic t)
   :config
-  (load-theme 'doom-one t)
   (doom-themes-visual-bell-config)
   (doom-themes-org-config))
 
+(when (display-graphic-p)
+      (load-theme 'doom-one t))
 
 (use-package avy
   :ensure t)
