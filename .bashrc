@@ -4,6 +4,11 @@
 export PS1="\[\e[94m\]\u\[\e[m\] \[\e[32m\]\W\[\e[m\] \\$ "
 export EDITOR='nvim'
 
+alias ls='exa'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
 alias vim='$EDITOR'
 alias copycb='xclip -selection c'
 alias pastecb='xclip -selection c -o'
