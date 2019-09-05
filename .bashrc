@@ -2,17 +2,19 @@
 # ~/.bashrc
 #
 export PS1="\[\e[94m\]\u\[\e[m\] \[\e[32m\]\W\[\e[m\] \\$ "
-export EDITOR='nvim'
+export EDITOR='emacsclient -t'
+
+alias vi='$EDITOR'
+alias vim='$EDITOR'
 
 alias ls='exa'
 alias l='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
-alias vim='$EDITOR'
 alias copycb='xclip -selection c'
 alias pastecb='xclip -selection c -o'
-alias ll='ls -alt'
+alias ll='ls -al -t modified'
 alias vimedit='vim ~/.config/nvim/init.vim'
 alias bashedit='vim ~/.bashrc'
 
