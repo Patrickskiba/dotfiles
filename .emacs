@@ -153,7 +153,9 @@
   "--bracket-spacing" "true"
   "--single-quote" "true"
   "--no-semi" "true"
-  "--jsx-single-quote" "true")))
+  "--jsx-single-quote" "true"
+  "--jsx-bracket-same-line" "true"
+  "--print-width" "100")))
 
 ;;Hide UI cruft
 (menu-bar-mode -1)
