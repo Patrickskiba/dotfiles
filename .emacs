@@ -33,9 +33,6 @@
   (define-key company-active-map (kbd "C-n") #'company-select-next)
   (define-key company-active-map (kbd "C-p") #'company-select-previous))
 
-(use-package tide
-  :ensure t)
-
 (defun setup-tide-mode ()
   "Setup function for tide."
   (interactive)
@@ -46,11 +43,13 @@
   (tide-hl-identifier-mode +1)
   (company-mode +1))
 
+(use-package tide
+  :ensure t
+  :config
+  (defvar company-tooltip-align-annotations)
+  (setq company-tooltip-align-annotations t)
 
-(defvar company-tooltip-align-annotations)
-(setq company-tooltip-align-annotations t)
-
-(add-hook 'js-mode-hook #'setup-tide-mode)
+  (add-hook 'js-mode-hook #'setup-tide-mode))
 
 (use-package rainbow-delimiters
   :ensure t
