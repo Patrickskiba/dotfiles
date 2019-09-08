@@ -280,6 +280,7 @@ inhibit-startup-echo-area-message t)
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    '("34c99997eaa73d64b1aaa95caca9f0d64229871c200c5254526d0062f8074693" "9c27124b3a653d43b3ffa088cd092c34f3f82296cf0d5d4f719c0c0817e1afa6" "ab9456aaeab81ba46a815c00930345ada223e1e7c7ab839659b382b52437b9ea" "1a6d627434899f6d21e35b85fee62079db55ef04ecd9b70b82e5d475406d9c69" default))
+ '(flycheck-javascript-standard-executable "/usr/bin/standardx")
  '(js-indent-level 2)
  '(js2-missing-semi-one-line-override nil)
  '(js2-strict-missing-semi-warning nil)

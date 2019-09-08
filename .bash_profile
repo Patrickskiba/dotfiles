@@ -8,6 +8,7 @@ export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 [[ -f ~/.creds ]] && . ~/.creds
+[[ -f ~/.Xresources ]] && xrdb ~/.Xresources
 
 if [ "$(tty)" = "/dev/tty1" ]; then
 	pgrep -x i3 || exec startx
