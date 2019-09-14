@@ -123,31 +123,9 @@
 
 
 (general-define-key
- :states '(normal)
- :keymaps 'dired-mode-map
- :prefix "SPC"
- "s" '(swiper :which-key "swiper")
- "a" '(counsel-M-x :which-key "funcs")
- "p" '(projectile-command-map :which-key "project")
- "f" '(counsel-find-file :which-key "find file")
- "j" '(avy-goto-char-timer :which-key "go to char")
- "l" '(avy-goto-line :which-key "jump to line")
- "b" '(switch-to-buffer :which-key "switch buffer")
- "B" '(list-buffers :which-key "list bufferes")
- "w" '(:ignore t :which-key "window")
- "wo" '(ace-window :which-key "other window")
- "ws" '(split-window-below :which-key "split window below")
- "wv" '(split-window-right :which-key "split window vertically")
- "w=" '(balance-windows :which-key "balance windows")
- "wd" '(ace-delete-window :which-key "delete window")
- "wD" '(ace-delete-other-windows :which-key "delete other windows")
- "t" '(:ignore t :which-key "text")
- "tz" '(hydra-zoom/body :which-key "zoom"))
-
-(general-define-key
  :prefix "SPC"
  :states 'normal
- :keymaps 'global
+ :keymaps '(global dired-mode-map)
  "s" '(swiper :which-key "swiper")
  "a" '(counsel-M-x :which-key "funcs")
  "p" '(projectile-command-map :which-key "project")
