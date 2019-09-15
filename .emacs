@@ -125,7 +125,7 @@
 (general-define-key
  :prefix "SPC"
  :states 'normal
- :keymaps '(global dired-mode-map)
+ :keymaps '(global dired-mode-map emacs)
  "s" '(swiper :which-key "swiper")
  "a" '(counsel-M-x :which-key "funcs")
  "p" '(projectile-command-map :which-key "project")
@@ -143,6 +143,19 @@
  "wD" '(ace-delete-other-windows :which-key "delete other windows")
  "t" '(:ignore t :which-key "text")
  "tz" '(hydra-zoom/body :which-key "zoom"))
+
+(general-define-key
+ :prefix "SPC"
+ :states 'normal
+ :keymaps 'js-mode-map
+ "m" '(:ignore t :which-key "major mode")
+ "md" '(tide-jump-to-definition :which-key "jump to definition"))
+
+(general-define-key
+ :prefix "SPC"
+ :states 'normal
+ :keymaps 'org-mode-map
+ "m" '(:ignore t :which-key "major mode"))
 
 (use-package prettier-js
   :ensure t
