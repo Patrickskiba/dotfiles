@@ -149,13 +149,17 @@
  :states 'normal
  :keymaps 'js-mode-map
  "m" '(:ignore t :which-key "major mode")
- "md" '(tide-jump-to-definition :which-key "jump to definition"))
+ "mj" '(tide-jump-to-definition :which-key "jump to definition")
+ "mh" '(tide-documentation-at-point :which-key "documentation at point")
+ "mf" '(tide-references :which-key "references")
+ "mr" '(tide-rename-symbol :which-key "rename symbol"))
 
 (general-define-key
  :prefix "SPC"
  :states 'normal
  :keymaps 'org-mode-map
- "m" '(:ignore t :which-key "major mode"))
+ "m" '(:ignore t :which-key "major mode")
+ "mt" '(org-todo :which-key "Toggle Todo"))
 
 (use-package prettier-js
   :ensure t
