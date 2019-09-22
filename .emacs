@@ -304,7 +304,7 @@ inhibit-startup-echo-area-message t)
  '(js2-strict-missing-semi-warning nil)
  '(org-agenda-files '("~/Dropbox"))
  '(package-selected-packages
-   '(company-mode doom-themes doom-modeline evil-magit magit evil-collection rainbow-delimiters tide flycheck smex evil counsel-projectile projectile which-key general prettier-js web-mode counsel ivy use-package gruvbox-theme ace-window))
+   '(pass company-mode doom-themes doom-modeline evil-magit magit evil-collection rainbow-delimiters tide flycheck smex evil counsel-projectile projectile which-key general prettier-js web-mode counsel ivy use-package gruvbox-theme ace-window))
  '(projectile-git-command
    "comm -23 <(git ls-files -co --exclude-standard | sort) <(git ls-files -d | sort) | tr '\\n' '\\0'"))
 (custom-set-faces
