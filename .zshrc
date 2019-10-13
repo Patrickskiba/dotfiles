@@ -40,6 +40,8 @@ c() { cd "$(fd -t d . $HOME | grep -v -E 'node_modules|\.git' | fzy)"; }
 
 nr() { npm run | grep -v -E '(Lifecycle included in)|(available via)|^$' | awk 'NR%2==0' | fzy | xargs -r npm run; }
 
+export SASS_PATH=./node_modules
+
 # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select
