@@ -60,8 +60,17 @@
   :ensure t
   :init
   (setq evil-want-C-u-scroll t)
+  (setq evil-want-keybinding nil)
   :config
   (evil-mode 1))
+
+(use-package evil-collection
+  :after evil
+  :ensure t)
+
+(with-eval-after-load 'term (evil-collection-term-setup))
+
+
 
 (use-package general
   :ensure t
@@ -143,6 +152,11 @@
  "wD" '(ace-delete-other-windows :which-key "delete other windows")
  "t" '(:ignore t :which-key "text")
  "tz" '(hydra-zoom/body :which-key "zoom"))
+
+(general-define-key
+ :states 'insert
+ :keymaps 'term-raw-map
+ "C-w" '(backward-kill-word :which-key "delete backwards"))
 
 (general-define-key
  :prefix "SPC"
@@ -297,14 +311,16 @@ inhibit-startup-echo-area-message t)
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("34c99997eaa73d64b1aaa95caca9f0d64229871c200c5254526d0062f8074693" "9c27124b3a653d43b3ffa088cd092c34f3f82296cf0d5d4f719c0c0817e1afa6" "ab9456aaeab81ba46a815c00930345ada223e1e7c7ab839659b382b52437b9ea" "1a6d627434899f6d21e35b85fee62079db55ef04ecd9b70b82e5d475406d9c69" default))
+   (quote
+    ("34c99997eaa73d64b1aaa95caca9f0d64229871c200c5254526d0062f8074693" "9c27124b3a653d43b3ffa088cd092c34f3f82296cf0d5d4f719c0c0817e1afa6" "ab9456aaeab81ba46a815c00930345ada223e1e7c7ab839659b382b52437b9ea" "1a6d627434899f6d21e35b85fee62079db55ef04ecd9b70b82e5d475406d9c69" default)))
  '(flycheck-javascript-standard-executable "/usr/bin/standardx")
  '(js-indent-level 2)
  '(js2-missing-semi-one-line-override nil)
  '(js2-strict-missing-semi-warning nil)
- '(org-agenda-files '("~/Dropbox"))
+ '(org-agenda-files (quote ("~/Dropbox")))
  '(package-selected-packages
-   '(pass company-mode doom-themes doom-modeline evil-magit magit evil-collection rainbow-delimiters tide flycheck smex evil counsel-projectile projectile which-key general prettier-js web-mode counsel ivy use-package gruvbox-theme ace-window))
+   (quote
+    (pass company-mode doom-themes doom-modeline evil-magit magit evil-collection rainbow-delimiters tide flycheck smex evil counsel-projectile projectile which-key general prettier-js web-mode counsel ivy use-package gruvbox-theme ace-window)))
  '(projectile-git-command
    "comm -23 <(git ls-files -co --exclude-standard | sort) <(git ls-files -d | sort) | tr '\\n' '\\0'"))
 (custom-set-faces
