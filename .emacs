@@ -154,11 +154,6 @@
  "tz" '(hydra-zoom/body :which-key "zoom"))
 
 (general-define-key
- :states 'insert
- :keymaps 'term-raw-map
- "C-w" '(backward-kill-word :which-key "delete backwards"))
-
-(general-define-key
  :prefix "SPC"
  :states 'normal
  :keymaps 'js-mode-map

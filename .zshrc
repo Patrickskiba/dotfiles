@@ -1,3 +1,4 @@
+
 export ZSH="/home/patrick/.oh-my-zsh"
 ZSH_THEME="pygmalion"
 
@@ -37,3 +38,4 @@ nr() { npm run | grep -v -E '(Lifecycle included in)|(available via)|^$' | awk '
 
 export SASS_PATH=./node_modules
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/bin/tools:$PATH"
+
