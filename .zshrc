@@ -1,10 +1,8 @@
 export ZSH="/home/patrick/.oh-my-zsh"
 ZSH_THEME="pygmalion"
 
-# History in cache directory:
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=~/.cache/zsh/history
+autoload -U colors && colors
+source $ZSH/oh-my-zsh.sh
 
 # Vim is not OS enough
 export EDITOR='emacsclient'
@@ -39,5 +37,3 @@ nr() { npm run | grep -v -E '(Lifecycle included in)|(available via)|^$' | awk '
 
 export SASS_PATH=./node_modules
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/bin/tools:$PATH"
-
-source $ZSH/oh-my-zsh.sh
