@@ -14,6 +14,11 @@
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup")))
 
+(defun zsh ()
+  "launches term with zsh"
+  (interactive)
+  (ansi-term "zsh"))
+
 (setq enable-recursive-minibuffers t)
 
 (require 'use-package)
@@ -152,8 +157,9 @@
  "w=" '(balance-windows :which-key "balance windows")
  "wd" '(ace-delete-window :which-key "delete window")
  "wD" '(ace-delete-other-windows :which-key "delete other windows")
- "t" '(:ignore t :which-key "text")
- "tz" '(hydra-zoom/body :which-key "zoom"))
+ "t" '(zsh :which-key "terminal")
+ "T" '(:ignore t :which-key "text")
+ "Tz" '(hydra-zoom/body :which-key "zoom"))
 
 (general-define-key
  :prefix "SPC"

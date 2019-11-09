@@ -6,9 +6,9 @@ autoload -U colors && colors
 source $ZSH/oh-my-zsh.sh
 
 # Vim is not OS enough
-export EDITOR='emacsclient'
-alias vi='$EDITOR  --create-frame'
-alias vim='$EDITOR --create-frame'
+export EDITOR='emacs'
+alias vi='$EDITOR'
+alias vim='$EDITOR'
 
 # Replace ls
 alias ls='exa'
