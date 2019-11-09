@@ -29,10 +29,7 @@ alias nt='npm test'
 alias ntu='npm test -- --updateSnapshot'
 alias ntw='npm run test:watch'
 
-
 alias mirrordisplay='xrandr --output DP-2 --auto --output DP-4 --auto --same-as DP-2'
-
-c() { cd "$(fd -t d . $HOME | grep -v -E 'node_modules|\.git' | fzy)"; }
 
 nr() { npm run | grep -v -E '(Lifecycle included in)|(available via)|^$' | awk 'NR%2==0' | fzy | xargs -r npm run; }
 
