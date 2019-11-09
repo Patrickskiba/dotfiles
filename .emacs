@@ -66,11 +66,11 @@
 
 (use-package evil-collection
   :after evil
-  :ensure t)
-
-(with-eval-after-load 'term (evil-collection-term-setup))
-
-
+  :ensure t
+  :config
+  (setq evil-collection-mode-list '(term dired))
+  (evil-collection-term-setup)
+  (evil-collection-init))
 
 (use-package general
   :ensure t
@@ -98,10 +98,8 @@
       doom-themes-enable-italic t)
   :config
   (doom-themes-visual-bell-config)
-  (doom-themes-org-config))
-
-(when (display-graphic-p)
-      (load-theme 'doom-one t))
+  (doom-themes-org-config)
+  (load-theme 'doom-one t))
 
 (use-package avy
   :ensure t)
@@ -130,6 +128,10 @@
 (use-package smex
   :ensure t)
 
+(general-define-key
+ :states 'normal
+ :keymaps '(override dired-mode-map)
+ "SPC" nil)
 
 (general-define-key
  :prefix "SPC"
