@@ -1,1 +1,3 @@
- fd -d 4  -I -E node_modules -E .git . $HOME | fzy | xargs -I {} bash -c 'emacs "{}" &' 
+#!/bin/bash
+
+fd -d 4  -I -E node_modules -E .git . $HOME | dmenu -l 10 | xargs -I {} bash -c 'emacsclient --create-frame "{}" &' 

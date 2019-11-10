@@ -27,6 +27,12 @@
       :ensure t
       :hook (after-init . doom-modeline-mode))
 
+(defun enable-doom-modeline-icons (_frame)
+  (setq doom-modeline-icon t))
+  
+(add-hook 'after-make-frame-functions 
+          #'enable-doom-modeline-icons)
+
 (use-package flycheck
   :ensure t
   :config
@@ -53,7 +59,6 @@
   :config
   (defvar company-tooltip-align-annotations)
   (setq company-tooltip-align-annotations t)
-
   (add-hook 'js-mode-hook #'setup-tide-mode))
 
 (use-package rainbow-delimiters

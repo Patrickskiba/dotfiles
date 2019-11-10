@@ -7,8 +7,8 @@ source $ZSH/oh-my-zsh.sh
 
 # Vim is not OS enough
 export EDITOR='emacs'
-alias vi='$EDITOR'
-alias vim='$EDITOR'
+alias vi='$EDITOR --create-frame'
+alias vim='$EDITOR --create-frame'
 
 # Replace ls
 alias ls='exa'
