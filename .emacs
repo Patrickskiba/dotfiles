@@ -182,7 +182,11 @@
  :states 'normal
  :keymaps 'org-mode-map
  "m" '(:ignore t :which-key "major mode")
- "mt" '(org-todo :which-key "Toggle Todo"))
+ "mt" '(org-todo :which-key "Toggle Todo")
+ "ma" '(org-agenda :which-key "Org Agenda")
+ "mi" '(:ignore t :which-key "Insert Field")
+ "mis" '(org-schedule :which-key "org schedule")
+ "mid" '(org-deadline :which-key "org deadline"))
 
 (use-package prettier-js
   :ensure t
