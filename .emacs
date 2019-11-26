@@ -138,6 +138,9 @@
 (use-package smex
   :ensure t)
 
+(use-package ledger-mode
+  :ensure t)
+
 (general-define-key
  :states 'normal
  :keymaps '(override dired-mode-map)
@@ -153,9 +156,9 @@
  "f" '(counsel-find-file :which-key "find file")
  "j" '(avy-goto-char-timer :which-key "go to char")
  "l" '(avy-goto-line :which-key "jump to line")
- "b" '(:ignore t :which-key "buffers")
- "bb" '(switch-to-buffer :which-key "switch buffer")
- "bl" '(list-buffers :which-key "list bufferes")
+ "B" '(:ignore t :which-key "buffers")
+ "Bl" '(list-buffers :which-key "list bufferes")
+ "b" '(switch-to-buffer :which-key "switch buffer")
  "w" '(:ignore t :which-key "window")
  "wo" '(ace-window :which-key "other window")
  "ws" '(split-window-below :which-key "split window below")
@@ -176,6 +179,15 @@
  "mh" '(tide-documentation-at-point :which-key "documentation at point")
  "mf" '(tide-references :which-key "references")
  "mr" '(tide-rename-symbol :which-key "rename symbol"))
+
+(general-define-key
+ :prefix "SPC"
+ :states 'normal
+ :keymaps 'ledger-mode-map
+ "m" '(:ignore t :which-key "major mode")
+ "ma" '(ledger-add-transaction :which-key "add transation")
+ "mf" '(ledger-mode-clean-buffer :which-key "format file")
+ )
 
 (general-define-key
  :prefix "SPC"
@@ -324,16 +336,14 @@ inhibit-startup-echo-area-message t)
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   (quote
-    ("34c99997eaa73d64b1aaa95caca9f0d64229871c200c5254526d0062f8074693" "9c27124b3a653d43b3ffa088cd092c34f3f82296cf0d5d4f719c0c0817e1afa6" "ab9456aaeab81ba46a815c00930345ada223e1e7c7ab839659b382b52437b9ea" "1a6d627434899f6d21e35b85fee62079db55ef04ecd9b70b82e5d475406d9c69" default)))
+   '("34c99997eaa73d64b1aaa95caca9f0d64229871c200c5254526d0062f8074693" "9c27124b3a653d43b3ffa088cd092c34f3f82296cf0d5d4f719c0c0817e1afa6" "ab9456aaeab81ba46a815c00930345ada223e1e7c7ab839659b382b52437b9ea" "1a6d627434899f6d21e35b85fee62079db55ef04ecd9b70b82e5d475406d9c69" default))
  '(flycheck-javascript-standard-executable "/usr/bin/standardx")
  '(js-indent-level 2)
  '(js2-missing-semi-one-line-override nil)
  '(js2-strict-missing-semi-warning nil)
- '(org-agenda-files (quote ("~/Dropbox")))
+ '(org-agenda-files '("~/Dropbox"))
  '(package-selected-packages
-   (quote
-    (pass company-mode doom-themes doom-modeline evil-magit magit evil-collection rainbow-delimiters tide flycheck smex evil counsel-projectile projectile which-key general prettier-js web-mode counsel ivy use-package gruvbox-theme ace-window)))
+   '(ledger-mode ledger pass company-mode doom-themes doom-modeline evil-magit magit evil-collection rainbow-delimiters tide flycheck smex evil counsel-projectile projectile which-key general prettier-js web-mode counsel ivy use-package gruvbox-theme ace-window))
  '(projectile-git-command
    "comm -23 <(git ls-files -co --exclude-standard | sort) <(git ls-files -d | sort) | tr '\\n' '\\0'"))
 (custom-set-faces
