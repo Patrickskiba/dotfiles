@@ -187,7 +187,9 @@
  "m" '(:ignore t :which-key "major mode")
  "ma" '(ledger-add-transaction :which-key "add transation")
  "mf" '(ledger-mode-clean-buffer :which-key "format file")
- )
+ "mS" '(ledger-sort-buffer :which-key "sort buffer")
+ "mb" '(ledger-display-balance-at-point :which-key "display balance at point")
+ "mr" '(ledger-report :which-key "report"))
 
 (general-define-key
  :prefix "SPC"
