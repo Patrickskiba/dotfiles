@@ -9,8 +9,8 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 
 ;; set transparency
-(set-frame-parameter (selected-frame) 'alpha '(99 90))
-(add-to-list 'default-frame-alist '(alpha 99 90))
+(set-frame-parameter (selected-frame) 'alpha '(100 100))
+(add-to-list 'default-frame-alist '(alpha 100 100))
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup")))
 
@@ -32,6 +32,15 @@
   
 (add-hook 'after-make-frame-functions 
           #'enable-doom-modeline-icons)
+
+(use-package elfeed
+  :ensure t)
+
+(use-package elfeed-org
+  :ensure t
+  :config
+  (elfeed-org)
+  (setq rmh-elfeed-org-files (list "~/.emacs.d/elfeed.org")))
 
 (use-package flycheck
   :ensure t
@@ -78,7 +87,7 @@
   :after evil
   :ensure t
   :config
-  (setq evil-collection-mode-list '(term dired))
+  (setq evil-collection-mode-list '(term dired elfeed))
   (evil-collection-term-setup)
   (evil-collection-init))
 
@@ -143,7 +152,7 @@
 
 (general-define-key
  :states 'normal
- :keymaps '(override dired-mode-map)
+ :keymaps '(override dired-mode-map elfeed-search-mode-map elfeed-show-mode-map)
  "SPC" nil)
 
 (general-define-key
@@ -214,6 +223,43 @@
   "--jsx-single-quote" "true"
   "--jsx-bracket-same-line" "true"
   "--print-width" "100")))
+
+(defun elfeed-play-with-mpv ()
+  "Play entry link with mpv."
+  (interactive)
+  (let ((entry (if (eq major-mode 'elfeed-show-mode) elfeed-show-entry (elfeed-search-selected :single)))
+        (quality-arg "")
+        (quality-val "720"))
+    (setq quality-val (string-to-number quality-val))
+    (message "Opening %s with height≤%s with mpv..." (elfeed-entry-link entry) quality-val)
+    (when (< 0 quality-val)
+      (setq quality-arg (format "--ytdl-format=[height<=?%s]" quality-val)))
+    (start-process "elfeed-mpv" nil "mpv" quality-arg (elfeed-entry-link entry))))
+
+(defvar elfeed-mpv-patterns
+  '("youtu\\.?be")
+  "List of regexp to match against elfeed entry link to know
+whether to use mpv to visit the link.")
+
+(defun elfeed-visit-or-play-with-mpv ()
+  "Play in mpv if entry link matches `elfeed-mpv-patterns', visit otherwise.
+See `elfeed-play-with-mpv'."
+  (interactive)
+  (let ((entry (if (eq major-mode 'elfeed-show-mode) elfeed-show-entry (elfeed-search-selected :single)))
+        (patterns elfeed-mpv-patterns))
+    (while (and patterns (not (string-match (car elfeed-mpv-patterns) (elfeed-entry-link entry))))
+      (setq patterns (cdr patterns)))
+    (if patterns
+        (elfeed-play-with-mpv)
+      (if (eq major-mode 'elfeed-search-mode)
+          (elfeed-search-show-entry entry)
+        (evil-ret)))))
+
+
+(general-define-key
+ :states 'normal
+ :keymaps '(override elfeed-search-mode-map elfeed-show-mode-map)
+ "RET" 'elfeed-visit-or-play-with-mpv)
 
 ;;Hide UI cruft
 (menu-bar-mode -1)
@@ -345,7 +391,7 @@ inhibit-startup-echo-area-message t)
  '(js2-strict-missing-semi-warning nil)
  '(org-agenda-files '("~/Dropbox"))
  '(package-selected-packages
-   '(ledger-mode ledger pass company-mode doom-themes doom-modeline evil-magit magit evil-collection rainbow-delimiters tide flycheck smex evil counsel-projectile projectile which-key general prettier-js web-mode counsel ivy use-package gruvbox-theme ace-window))
+   '(elfeed-org elfeed markdown-mode ledger-mode ledger pass company-mode doom-themes doom-modeline evil-magit magit evil-collection rainbow-delimiters tide flycheck smex evil counsel-projectile projectile which-key general prettier-js web-mode counsel ivy use-package gruvbox-theme ace-window))
  '(projectile-git-command
    "comm -23 <(git ls-files -co --exclude-standard | sort) <(git ls-files -d | sort) | tr '\\n' '\\0'"))
 (custom-set-faces
