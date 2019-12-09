@@ -211,6 +211,13 @@
  "mis" '(org-schedule :which-key "org schedule")
  "mid" '(org-deadline :which-key "org deadline"))
 
+(general-define-key
+ :prefix "SPC"
+ :states 'normal
+ :keymaps 'elfeed-search-mode-map
+ "m" '(:ignore t :which-key "major mode")
+ "mu" '(elfeed-update :which-key "update elfeed"))
+
 (use-package prettier-js
   :ensure t
   :hook (js-mode . prettier-js-mode)
@@ -258,7 +265,7 @@ See `elfeed-play-with-mpv'."
 
 (general-define-key
  :states 'normal
- :keymaps '(override elfeed-search-mode-map elfeed-show-mode-map)
+ :keymaps '(elfeed-search-mode-map elfeed-show-mode-map)
  "RET" 'elfeed-visit-or-play-with-mpv)
 
 ;;Hide UI cruft
