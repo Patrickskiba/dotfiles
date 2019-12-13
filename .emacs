@@ -207,6 +207,8 @@
  "m" '(:ignore t :which-key "major mode")
  "mt" '(org-todo :which-key "Toggle Todo")
  "ma" '(org-agenda :which-key "Org Agenda")
+ "me" '(:ignore t :which-key "Org Eval")
+ "mee" '(org-babel-execute-src-block :which-key "eval block")
  "mi" '(:ignore t :which-key "Insert Field")
  "mis" '(org-schedule :which-key "org schedule")
  "mid" '(org-deadline :which-key "org deadline"))
@@ -384,6 +386,12 @@ inhibit-startup-echo-area-message t)
 
 (defvar ediff-window-setup-function)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+(org-babel-do-load-languages 'org-babel-load-languages
+    '(
+        (shell . t)
+    )
+)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
