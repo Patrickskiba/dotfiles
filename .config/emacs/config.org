@@ -693,6 +693,15 @@ See `elfeed-play-with-mpv'."
  :keymaps '(elfeed-search-mode-map elfeed-show-mode-map)
  "RET" 'elfeed-visit-or-play-with-mpv)
    #+end_src
+** Evil
+   #+begin_src emacs-lisp
+   (general-define-key
+   :states 'normal
+   "C-/" '(comment-line :which-key "comment line"))
+   #+end_src
+
+   #+RESULTS:
+
 * Emacs Custom
    #+begin_src emacs-lisp
 (custom-set-variables
