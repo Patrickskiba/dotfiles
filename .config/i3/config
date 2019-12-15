@@ -24,6 +24,9 @@ bindsym $mod+Return exec $term
 # start emacs
 bindsym $mod+e exec emacsclient --create-frame
 
+# start brave
+bindsym $mod+b exec brave
+
 # kill focused window
 bindsym $mod+Shift+q kill
 

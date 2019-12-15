@@ -1,0 +1,722 @@
+#+TITLE: Emacs Config
+#+AUTHOR: Patrick Skiba
+#+EMAIL: pskiba@posteo.net
+#+OPTIONS: toc:nil num:nil
+
+* Basics
+** Backups
+   Backup all files in a backup directory rather than in the current directory
+   #+begin_src emacs-lisp
+   (setq backup-directory-alist '(("." . "~/.emacs.d/backup")))
+   #+end_src
+
+   #+RESULTS:
+   : ((. . ~/.emacs.d/backup))
+
+** Clock
+   Enable system clock in the bottom row
+   #+begin_src emacs-lisp
+   (display-time-mode t)
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Recursive Minibuffer
+   Allow interactive commands from within the minibuffer. For an in depth explaination of what it does see the following [[post][https://www.masteringemacs.org/article/executing-shell-commands-emacs]]
+   #+begin_src emacs-lisp
+   (setq enable-recursive-minibuffers t)
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Add parts of each file's directory to the buffer name if not unique
+   #+begin_src emacs-lisp
+   (require 'uniquify)
+   (setq uniquify-buffer-name-style 'forward)
+   #+end_src
+
+   #+RESULTS:
+   : forward
+
+** 80 chars is a good width.
+   #+begin_src emacs-lisp
+   (set-default 'fill-column 80)
+   #+end_src
+
+   #+RESULTS:
+   : 80
+
+** Hide UI cruft
+   #+begin_src emacs-lisp
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+   #+end_src
+
+   #+RESULTS:
+
+** Hide the splash screen
+   #+begin_src emacs-lisp
+(setq inhibit-startup-message t
+inhibit-startup-echo-area-message t)
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Emacs auto indent
+   #+begin_src emacs-lisp
+(define-key global-map (kbd "RET") 'newline-and-indent)
+   #+end_src
+
+   #+RESULTS:
+   : newline-and-indent
+
+;;SANE DEFAULTS
+** Move files to trash when deleting
+   #+begin_src emacs-lisp
+(setq delete-by-moving-to-trash t)
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Allow pasting selection outside of Emacs
+   #+begin_src emacs-lisp
+(setq select-enable-clipboard t)
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Auto refresh buffers
+   #+begin_src emacs-lisp
+(global-auto-revert-mode 1)
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Also auto refresh dired, but be quiet about it
+   #+begin_src emacs-lisp
+(defvar global-auto-revert-non-file-buffers)
+(setq global-auto-revert-non-file-buffers t)
+
+(defvar auto-revert-verbose)
+(setq auto-revert-verbose nil)
+   #+end_src
+
+   #+RESULTS:
+
+** Show keystrokes in progress
+   #+begin_src emacs-lisp
+(setq echo-keystrokes 0.1)
+   #+end_src
+
+   #+RESULTS:
+   : 0.1
+
+** Real emacs knights don't use shift to mark things
+   #+begin_src emacs-lisp
+(setq shift-select-mode nil)
+   #+end_src
+
+   #+RESULTS:
+
+** Transparently open compressed files
+   #+begin_src emacs-lisp
+(auto-compression-mode t)
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Enable syntax highlighting for older Emacsen that have it off
+   #+begin_src emacs-lisp
+(global-font-lock-mode t)
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Answering just 'y' or 'n' will do
+   #+begin_src emacs-lisp
+(defalias 'yes-or-no-p 'y-or-n-p)
+   #+end_src
+
+   #+RESULTS:
+   : yes-or-no-p
+
+** UTF-8 please
+   #+begin_src emacs-lisp
+(setq locale-coding-system 'utf-8) ; pretty
+(set-terminal-coding-system 'utf-8) ; pretty
+(set-keyboard-coding-system 'utf-8) ; pretty
+(set-selection-coding-system 'utf-8) ; please
+(prefer-coding-system 'utf-8) ; with sugar on top
+   #+end_src
+
+   #+RESULTS:
+
+** Show active region
+    #+begin_src emacs-lisp
+(transient-mark-mode 1)
+(make-variable-buffer-local 'transient-mark-mode)
+(put 'transient-mark-mode 'permanent-local t)
+(setq-default transient-mark-mode t)
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Don't highlight matches with jump-char - it's distracting
+   #+begin_src emacs-lisp
+(defvar jump-char-lazy-highlight-face)
+(setq jump-char-lazy-highlight-face nil)
+   #+end_src
+
+   #+RESULTS:
+
+** Save a list of recent files visited. (open recent file with C-x f)
+   #+begin_src emacs-lisp
+(recentf-mode 1)
+(defvar recentf-max-saved-items)
+(setq recentf-max-saved-items 100) ;; just 20 is too recent
+   #+end_src
+
+   #+RESULTS:
+   : 100
+
+** Save minibuffer history
+   #+begin_src emacs-lisp
+(savehist-mode 1)
+(setq history-length 1000)
+   #+end_src
+
+   #+RESULTS:
+   : 1000
+
+** Undo/redo window configuration with C-c <left>/<right>
+   #+begin_src emacs-lisp
+(winner-mode 1)
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Never insert tabs
+   #+begin_src emacs-lisp
+(set-default 'indent-tabs-mode nil)
+   #+end_src
+
+   #+RESULTS:
+
+** Easily navigate sillycased words
+   #+begin_src emacs-lisp
+(global-subword-mode 1)
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Don't break lines for me, please
+   #+begin_src emacs-lisp
+(setq-default truncate-lines t)
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Allow recursive minibuffers
+   #+begin_src emacs-lisp
+(setq enable-recursive-minibuffers t)
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Don't be so stingy on the memory, we have lots now. It's the distant future.
+   #+begin_src emacs-lisp
+(setq gc-cons-threshold 200000000)
+   #+end_src
+
+   #+RESULTS:
+   : 200000000
+
+** org-mode: Don't ruin S-arrow to switch windows please (use M-+ and M-- instead to toggle)
+   #+begin_src emacs-lisp
+(defvar org-replace-disputed-keys)
+(setq org-replace-disputed-keys t)
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Fontify org-mode code blocks
+   #+begin_src emacs-lisp
+(defvar org-src-fontify-natively)
+(setq org-src-fontify-natively t)
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Sentences do not need double spaces to end. Period.
+   #+begin_src emacs-lisp
+(set-default 'sentence-end-double-space nil)
+   #+end_src
+
+   #+RESULTS:
+
+** A saner ediff
+   #+begin_src emacs-lisp
+(defvar ediff-diff-options)
+(setq ediff-diff-options "-w")
+
+(defvar ediff-split-window-function)
+(setq ediff-split-window-function 'split-window-horizontally)
+
+(defvar ediff-window-setup-function)
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+   #+end_src
+
+   #+RESULTS:
+   : ediff-setup-windows-plain
+
+* Functions
+** Launch ZSH Terminal
+   #+begin_src emacs-lisp
+   (defun zsh ()
+   "launches term with zsh"
+   (interactive)
+   (ansi-term "zsh"))
+   #+end_src
+
+   #+RESULTS:
+   : zsh
+
+** Setup TIDE
+   #+begin_src emacs-lisp
+   (defun setup-tide-mode ()
+   "Setup function for tide."
+   (interactive)
+   (tide-setup)
+   (flycheck-mode +1)
+   (setq flycheck-check-syntax-automatically '(save mode-enabled))
+   (eldoc-mode +1)
+   (tide-hl-identifier-mode +1)
+   (company-mode +1))
+   #+end_src
+
+   #+RESULTS:
+   : setup-tide-mode
+
+** Elfeed Open Videos in MPV
+   #+begin_src emacs-lisp
+(defun elfeed-play-with-mpv ()
+  "Play entry link with mpv."
+  (interactive)
+  (let ((entry (if (eq major-mode 'elfeed-show-mode) elfeed-show-entry (elfeed-search-selected :single)))
+        (quality-arg "")
+        (quality-val "720"))
+    (setq quality-val (string-to-number quality-val))
+    (message "Opening %s with height≤%s with mpv..." (elfeed-entry-link entry) quality-val)
+    (when (< 0 quality-val)
+      (setq quality-arg (format "--ytdl-format=[height<=?%s]" quality-val)))
+    (start-process "elfeed-mpv" nil "mpv" quality-arg (elfeed-entry-link entry))))
+
+(defvar elfeed-mpv-patterns
+  '("youtu\\.?be")
+  "List of regexp to match against elfeed entry link to know
+whether to use mpv to visit the link.")
+
+(defun elfeed-visit-or-play-with-mpv ()
+  "Play in mpv if entry link matches `elfeed-mpv-patterns', visit otherwise.
+See `elfeed-play-with-mpv'."
+  (interactive)
+  (let ((entry (if (eq major-mode 'elfeed-show-mode) elfeed-show-entry (elfeed-search-selected :single)))
+        (patterns elfeed-mpv-patterns))
+    (while (and patterns (not (string-match (car elfeed-mpv-patterns) (elfeed-entry-link entry))))
+      (setq patterns (cdr patterns)))
+    (if patterns
+        (elfeed-play-with-mpv)
+      (if (eq major-mode 'elfeed-search-mode)
+          (elfeed-search-show-entry entry)
+        (evil-ret)))))
+   #+end_src
+   
+   #+RESULTS:
+   : elfeed-visit-or-play-with-mpv
+
+* Packages
+** Company
+   #+begin_src emacs-lisp
+   (use-package company
+   :ensure t
+   :config
+   (define-key company-active-map (kbd "C-n") #'company-select-next)
+   (define-key company-active-map (kbd "C-p") #'company-select-previous))
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Doom Modeline
+   #+begin_src emacs-lisp
+   (use-package doom-modeline
+   :ensure t
+   :hook (after-init . doom-modeline-mode))
+
+   (defun enable-doom-modeline-icons (_frame)
+   (setq doom-modeline-icon t))
+  
+   (add-hook 'after-make-frame-functions 
+   #'enable-doom-modeline-icons)
+
+   #+end_src
+
+   #+RESULTS:
+   | enable-doom-modeline-icons | x-dnd-init-frame |
+
+** Elfeed
+   #+begin_src emacs-lisp
+   (use-package elfeed
+   :ensure t)
+   #+end_src
+
+   #+RESULTS:
+
+** Elfeed Org
+   #+begin_src emacs-lisp
+   (use-package elfeed-org
+   :ensure t
+   :config
+   (elfeed-org)
+   (setq rmh-elfeed-org-files (list "~/.emacs.d/elfeed.org")))
+   #+end_src
+
+   #+RESULTS:
+
+** Flycheck
+   #+begin_src emacs-lisp
+   (use-package flycheck
+   :ensure t
+   :config
+   (global-flycheck-mode))
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Tide
+   #+begin_src emacs-lisp
+   (use-package tide
+   :ensure t
+   :config
+   (defvar company-tooltip-align-annotations)
+   (setq company-tooltip-align-annotations t)
+   (add-hook 'js-mode-hook #'setup-tide-mode))
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Evil
+   #+begin_src emacs-lisp
+   (use-package evil
+   :ensure t
+   :init
+   (setq evil-want-C-u-scroll t)
+   (setq evil-want-keybinding nil)
+   :config
+   (evil-mode 1))
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Evil Collection
+   #+begin_src emacs-lisp
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (setq evil-collection-mode-list '(term dired elfeed))
+  (evil-collection-term-setup)
+  (evil-collection-init))
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** General
+   #+begin_src emacs-lisp
+   (use-package general
+   :ensure t
+   :config
+   (general-auto-unbind-keys t))
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Which Key
+   #+begin_src emacs-lisp
+   (use-package which-key
+   :ensure t
+   :init
+   (which-key-mode)
+   :config
+   (setq which-key-sort-order 'which-key-key-order-alpha
+        which-key-idle-delay 0.25))
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Magit
+   #+begin_src emacs-lisp
+   (use-package magit
+   :ensure t)
+   #+end_src
+
+   #+RESULTS:
+
+** Evil Magit
+   #+begin_src emacs-lisp
+   (use-package evil-magit
+   :ensure t)
+   #+end_src
+
+   #+RESULTS:
+
+** Doom Themes
+   #+begin_src emacs-lisp
+   (use-package doom-themes
+   :ensure t
+   :init
+   (setq doom-themes-enable-bold t
+   doom-themes-enable-italic t)
+   :config
+   (doom-themes-visual-bell-config)
+   (doom-themes-org-config)
+   (load-theme 'doom-one t))
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Avy
+   #+begin_src emacs-lisp
+   (use-package avy
+   :ensure t)
+   #+end_src
+
+   #+RESULTS:
+
+** Ace Window
+   #+begin_src emacs-lisp
+   (use-package ace-window
+   :ensure t)
+   #+end_src
+
+   #+RESULTS:
+
+** Counsel
+   #+begin_src emacs-lisp
+   (use-package counsel
+   :ensure t
+   :init
+   (setq ivy-use-virtual-buffers t ivy-count-format "(%d/%d) ")
+   :config
+   (ivy-mode 1))
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Counsel Projectile
+   #+begin_src emacs-lisp
+   (use-package counsel-projectile
+   :ensure t
+   :config
+   (counsel-projectile-mode 1))
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Projectile
+   #+begin_src emacs-lisp
+   (use-package projectile
+   :ensure t
+   :config
+   (projectile-mode +1))
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Smex
+   #+begin_src emacs-lisp
+   (use-package smex
+   :ensure t)
+   #+end_src
+
+   #+RESULTS:
+
+** Ledger
+   #+begin_src emacs-lisp
+   (use-package ledger-mode
+   :ensure t)
+   #+end_src
+
+   #+RESULTS:
+
+** Rainbow Delimiters
+   #+begin_src emacs-lisp
+   (use-package rainbow-delimiters
+   :ensure t
+   :hook (prog-mode . rainbow-delimiters-mode))
+   #+end_src
+
+   #+RESULTS:
+   | rainbow-delimiters-mode |
+
+** Prettier
+   #+begin_src emacs-lisp
+   (use-package prettier-js
+   :ensure t
+   :hook (js-mode . prettier-js-mode)
+   :init
+   (setq prettier-js-args '(
+   "--trailing-comma" "none"
+   "--bracket-spacing" "true"
+   "--single-quote" "true"
+   "--no-semi" "true"
+   "--jsx-single-quote" "true"
+   "--jsx-bracket-same-line" "true"
+   "--print-width" "100")))
+   #+end_src
+
+   #+RESULTS:
+   | prettier-js-mode | setup-tide-mode |
+
+* Keybindings
+** Ensure Spacebar is cleared
+   #+begin_src emacs-lisp
+(general-define-key
+ :states 'normal
+ :keymaps '(override dired-mode-map elfeed-search-mode-map elfeed-show-mode-map)
+ "SPC" nil)
+   #+end_src
+** Global Keybindings
+   Primary keybindings
+   #+begin_src emacs-lisp
+   (general-define-key
+   :prefix "SPC"
+   :states 'normal
+   :keymaps '(global dired-mode-map emacs)
+   "s" '(swiper :which-key "swiper")
+   "a" '(counsel-M-x :which-key "funcs")
+   "p" '(projectile-command-map :which-key "project")
+   "f" '(counsel-find-file :which-key "find file")
+   "j" '(avy-goto-char-timer :which-key "go to char")
+   "l" '(avy-goto-line :which-key "jump to line")
+   "B" '(:ignore t :which-key "buffers")
+   "Bl" '(list-buffers :which-key "list bufferes")
+   "b" '(switch-to-buffer :which-key "switch buffer")
+   "w" '(:ignore t :which-key "window")
+   "wo" '(ace-window :which-key "other window")
+   "ws" '(split-window-below :which-key "split window below")
+   "wv" '(split-window-right :which-key "split window vertically")
+   "w=" '(balance-windows :which-key "balance windows")
+   "wd" '(ace-delete-window :which-key "delete window")
+   "wD" '(ace-delete-other-windows :which-key "delete other windows")
+   "t" '(zsh :which-key "terminal")
+   "T" '(:ignore t :which-key "text")
+   "Tz" '(hydra-zoom/body :which-key "zoom"))
+   #+end_src
+** Javascript
+   #+begin_src emacs-lisp
+(general-define-key
+ :prefix "SPC"
+ :states 'normal
+ :keymaps 'js-mode-map
+ "m" '(:ignore t :which-key "major mode")
+ "mj" '(tide-jump-to-definition :which-key "jump to definition")
+ "mh" '(tide-documentation-at-point :which-key "documentation at point")
+ "mf" '(tide-references :which-key "references")
+ "mr" '(tide-rename-symbol :which-key "rename symbol"))
+   #+end_src
+** Ledger
+   #+begin_src emacs-lisp
+   (general-define-key
+   :prefix "SPC"
+   :states 'normal
+   :keymaps 'ledger-mode-map
+   "m" '(:ignore t :which-key "major mode")
+   "ma" '(ledger-add-transaction :which-key "add transation")
+   "mf" '(ledger-mode-clean-buffer :which-key "format file")
+   "mS" '(ledger-sort-buffer :which-key "sort buffer")
+   "mb" '(ledger-display-balance-at-point :which-key "display balance at point")
+   "mr" '(ledger-report :which-key "report"))
+   #+end_src
+** Org Mode
+   #+begin_src emacs-lisp
+(general-define-key
+ :prefix "SPC"
+ :states 'normal
+ :keymaps 'org-mode-map
+ "m" '(:ignore t :which-key "major mode")
+ "mt" '(org-todo :which-key "Toggle Todo")
+ "ma" '(org-agenda :which-key "Org Agenda")
+ "me" '(:ignore t :which-key "Org Eval")
+ "mee" '(org-babel-execute-src-block :which-key "eval block")
+ "mi" '(:ignore t :which-key "Insert Field")
+ "mis" '(org-schedule :which-key "org schedule")
+ "mid" '(org-deadline :which-key "org deadline"))
+   #+end_src
+** Elfeed
+   #+begin_src emacs-lisp
+(general-define-key
+ :prefix "SPC"
+ :states 'normal
+ :keymaps 'elfeed-search-mode-map
+ "m" '(:ignore t :which-key "major mode")
+ "mu" '(elfeed-update :which-key "update elfeed"))
+
+(general-define-key
+ :states 'normal
+ :keymaps '(elfeed-search-mode-map elfeed-show-mode-map)
+ "RET" 'elfeed-visit-or-play-with-mpv)
+   #+end_src
+* Emacs Custom
+   #+begin_src emacs-lisp
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("34c99997eaa73d64b1aaa95caca9f0d64229871c200c5254526d0062f8074693" "9c27124b3a653d43b3ffa088cd092c34f3f82296cf0d5d4f719c0c0817e1afa6" "ab9456aaeab81ba46a815c00930345ada223e1e7c7ab839659b382b52437b9ea" "1a6d627434899f6d21e35b85fee62079db55ef04ecd9b70b82e5d475406d9c69" default))
+ '(flycheck-javascript-standard-executable "/usr/bin/standardx")
+ '(js-indent-level 2)
+ '(js2-missing-semi-one-line-override nil)
+ '(js2-strict-missing-semi-warning nil)
+ '(org-agenda-files '("~/Dropbox"))
+ '(package-selected-packages
+   '(elfeed-org elfeed markdown-mode ledger-mode ledger pass company-mode doom-themes doom-modeline evil-magit magit evil-collection rainbow-delimiters tide flycheck smex evil counsel-projectile projectile which-key general prettier-js web-mode counsel ivy use-package gruvbox-theme ace-window))
+ '(projectile-git-command
+   "comm -23 <(git ls-files -co --exclude-standard | sort) <(git ls-files -d | sort) | tr '\\n' '\\0'"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+   #+end_src
+
+   #+RESULTS:

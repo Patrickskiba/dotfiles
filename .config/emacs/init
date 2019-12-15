@@ -1,0 +1,26 @@
+;;; .emacs --- Patrick Skiba
+;;; Commentary:
+;; This file contains my Emacs configation
+;;
+;;; Code:
+(require 'package)
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(when (boundp 'package-pinned-packages)
+  (setq package-pinned-packages
+        '((org-plus-contrib . "org"))))
+
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(require 'use-package)
+(require 'org) 
+
+(org-babel-load-file (concat user-emacs-directory "config.org"))
+
+
+;;; .emacs ends here
