@@ -1,0 +1,53 @@
+* Blogs                                                              :elfeed:
+** Software Development                                                 :dev:
+*** Linux                                                             :linux:
+**** https://lukesmith.xyz/rss.xml                                :lukesmith:
+*** Emacs                                                             :emacs:
+**** http://nullprogram.com/feed
+**** http://oremacs.com/atom.xml
+**** https://metaredux.com/feed.xml
+
+* Youtube                                                            :elfeed:
+** CGP Grey                                                             :diy:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UC2C_jShtL725hvbm1arSV9w :cgpgrey:
+
+** DIY                                                                  :diy:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCTbgO2KiDSVJMOIaBTXsGtA :thisoldhouse:
+
+** Food                                                                 :food:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCbpMy0Fg74eXXkvxJrtEn3w :bonappetit:
+
+** Linguistics                                                  :linguistics: 
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCNhX3WQEkraW3VHPyup8jkQ :langfocus:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCLbiwlm3poGNh5XSVlXBkGA :polymathy:
+
+** Linux                                                              :linux: 
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCsnGwSIHyoYN0kiINAGUKxg :wolfgang:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA :lukesmith:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg :distrotube:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCZrrEuHiQjN2CUo84g5tk7w :tripcode:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCf93fPKwotph47H3_KDcRyg :filmsbykris:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UC0uTPqBCFIpZxlz_Lv1tk_g :prot:
+** Historical Education
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCTbgO2KiDSVJMOIaBTXsGtA :fireoflearning:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UC9RM-iSvTu1uPJb8X5yp3EQ :wendover:
+
+** Memes                                                              :memes:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCr3cBLTYmIK9kY0F_OdFWFQ :casuallyexplained:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCTbgO2KiDSVJMOIaBTXsGtA :pewdiepie:
+
+** Music                                                              :music: 
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCqawn0e2CDawyRppfJk_kFw :backalleykat:
+
+** Software UI/UX                                                      :uiux:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA :ajsmart:
+
+** Startup
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCcefcZRL2oaA_uBNeo5UOWg :ycombinator:
+
+** Weeaboo                                                            :japan:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCHL9bfHTxCMi-7vfxQ-AYtg :abroadjapan:
+
+** Wood Working                                                        :wood:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCXBNF-A7QlYT3tT-B9N4ElA :katzmoses:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCbMtJOly6TpO5MQQnNwkCHg :woodbywright:
