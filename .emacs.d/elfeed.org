@@ -8,11 +8,10 @@
 **** https://metaredux.com/feed.xml
 
 * Youtube                                                            :elfeed:
-** CGP Grey                                                             :diy:
-*** https://www.youtube.com/feeds/videos.xml?channel_id=UC2C_jShtL725hvbm1arSV9w :cgpgrey:
-
+** Anarco Primitive   :primitive:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCAL3JXZSzSm8AlZyD3nQdBA :primtech:
 ** DIY                                                                  :diy:
-*** https://www.youtube.com/feeds/videos.xml?channel_id=UCTbgO2KiDSVJMOIaBTXsGtA :thisoldhouse:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCUtWNBWbFL9We-cdXkiAuJA :thisoldhouse:
 
 ** Food                                                                 :food:
 *** https://www.youtube.com/feeds/videos.xml?channel_id=UCbpMy0Fg74eXXkvxJrtEn3w :bonappetit:
@@ -28,23 +27,27 @@
 *** https://www.youtube.com/feeds/videos.xml?channel_id=UCZrrEuHiQjN2CUo84g5tk7w :tripcode:
 *** https://www.youtube.com/feeds/videos.xml?channel_id=UCf93fPKwotph47H3_KDcRyg :filmsbykris:
 *** https://www.youtube.com/feeds/videos.xml?channel_id=UC0uTPqBCFIpZxlz_Lv1tk_g :prot:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCwuyodzTl_KdEKNuJmeo99A :emacsconf:
 ** Historical Education
-*** https://www.youtube.com/feeds/videos.xml?channel_id=UCTbgO2KiDSVJMOIaBTXsGtA :fireoflearning:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCbyE5OvaP4GJhKvPCXxjWvw :fireoflearning:
 *** https://www.youtube.com/feeds/videos.xml?channel_id=UC9RM-iSvTu1uPJb8X5yp3EQ :wendover:
 
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UC2C_jShtL725hvbm1arSV9w :cgpgrey:
 ** Memes                                                              :memes:
 *** https://www.youtube.com/feeds/videos.xml?channel_id=UCr3cBLTYmIK9kY0F_OdFWFQ :casuallyexplained:
-*** https://www.youtube.com/feeds/videos.xml?channel_id=UCTbgO2KiDSVJMOIaBTXsGtA :pewdiepie:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UC-lHJZR3Gqxm24_Vd_AJ5Yw :pewdiepie:
 
 ** Music                                                              :music: 
 *** https://www.youtube.com/feeds/videos.xml?channel_id=UCqawn0e2CDawyRppfJk_kFw :backalleykat:
 
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCykhRZORxkMpG2R3cGHJ32A :autisticboysmoneyclan:
+** Programming  :programming:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCzoVCacndDCfGDf41P-z0iA :JSConf:
 ** Software UI/UX                                                      :uiux:
-*** https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA :ajsmart:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCeB_OpLspKJGiKv1CYkWFFw :ajsmart:
 
 ** Startup
 *** https://www.youtube.com/feeds/videos.xml?channel_id=UCcefcZRL2oaA_uBNeo5UOWg :ycombinator:
-
 ** Weeaboo                                                            :japan:
 *** https://www.youtube.com/feeds/videos.xml?channel_id=UCHL9bfHTxCMi-7vfxQ-AYtg :abroadjapan:
 
