@@ -295,6 +295,16 @@ inhibit-startup-echo-area-message t)
 
    #+RESULTS:
    : zsh
+** Split-Biil
+   #+begin_src emacs-lisp
+   (defun split-bill (amount)
+   "Splits dollar amounts in half"
+   (interactive "n")
+   (insert (format "\s\s\sLiabilities:Patrick:CreditCard:Amex    %3.3f\n\s\s\sLiabilities:Erin:CreditCard:Amex    %2.3f\n\s\s\sExpense:Patrick    %3.3f\n\s\s\sExpense:Erin    %2.3f" (/ amount 2.0) (/ amount 2.0) (/ amount 2.0) (/ amount 2.0))))
+   #+end_src
+
+   #+RESULTS:
+   : split-bill
 
 ** Setup TIDE
    #+begin_src emacs-lisp
