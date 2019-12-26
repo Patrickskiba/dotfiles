@@ -285,21 +285,11 @@ inhibit-startup-echo-area-message t)
    : ediff-setup-windows-plain
 
 * Functions
-** Launch ZSH Terminal
-   #+begin_src emacs-lisp
-   (defun zsh ()
-   "launches term with zsh"
-   (interactive)
-   (ansi-term "zsh"))
-   #+end_src
-
-   #+RESULTS:
-   : zsh
-** Split-Biil
+** Split-Bill
    #+begin_src emacs-lisp
    (defun split-bill (amount)
    "Splits dollar amounts in half"
-   (interactive "n")
+   (interactive "nEnter a transaction amount: ")
    (insert (format "\s\s\sLiabilities:Patrick:CreditCard:Amex    %3.3f\n\s\s\sLiabilities:Erin:CreditCard:Amex    %2.3f\n\s\s\sExpense:Patrick    %3.3f\n\s\s\sExpense:Erin    %2.3f" (/ amount 2.0) (/ amount 2.0) (/ amount 2.0) (/ amount 2.0))))
    #+end_src
 
@@ -613,6 +603,15 @@ See `elfeed-play-with-mpv'."
    #+RESULTS:
    | prettier-js-mode | setup-tide-mode |
 
+** Libvterm
+   #+begin_src emacs-lisp
+   (use-package vterm
+   :load-path  "~/.config/emacs/emacs-libvterm"
+   )
+   #+end_src
+
+   #+RESULTS:
+
 * Keybindings
 ** Ensure Spacebar is cleared
    #+begin_src emacs-lisp
@@ -644,7 +643,7 @@ See `elfeed-play-with-mpv'."
    "w=" '(balance-windows :which-key "balance windows")
    "wd" '(ace-delete-window :which-key "delete window")
    "wD" '(ace-delete-other-windows :which-key "delete other windows")
-   "t" '(zsh :which-key "terminal")
+   "t" '(vterm :which-key "terminal")
    "T" '(:ignore t :which-key "text")
    "Tz" '(hydra-zoom/body :which-key "zoom"))
    #+end_src
@@ -668,11 +667,15 @@ See `elfeed-play-with-mpv'."
    :keymaps 'ledger-mode-map
    "m" '(:ignore t :which-key "major mode")
    "ma" '(ledger-add-transaction :which-key "add transation")
+   "mt" '(split-bill :which-key "split bill")
    "mf" '(ledger-mode-clean-buffer :which-key "format file")
    "mS" '(ledger-sort-buffer :which-key "sort buffer")
    "mb" '(ledger-display-balance-at-point :which-key "display balance at point")
    "mr" '(ledger-report :which-key "report"))
    #+end_src
+
+   #+RESULTS:
+
 ** Org Mode
    #+begin_src emacs-lisp
 (general-define-key
