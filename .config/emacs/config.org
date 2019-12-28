@@ -321,6 +321,7 @@ inhibit-startup-echo-area-message t)
         (quality-arg "")
         (quality-val "720"))
     (setq quality-val (string-to-number quality-val))
+    (elfeed-untag entry 'unread)
     (message "Opening %s with height≤%s with mpv..." (elfeed-entry-link entry) quality-val)
     (when (< 0 quality-val)
       (setq quality-arg (format "--ytdl-format=[height<=?%s]" quality-val)))
@@ -382,10 +383,13 @@ See `elfeed-play-with-mpv'."
 ** Elfeed
    #+begin_src emacs-lisp
    (use-package elfeed
+   :config
+   (setq elfeed-use-curl t)
    :ensure t)
    #+end_src
 
    #+RESULTS:
+   : t
 
 ** Elfeed Org
    #+begin_src emacs-lisp

@@ -1,6 +1,4 @@
 # general settings
-gaps inner 10
-gaps outer 10
 set $term --no-startup-id $TERMINAL
 set $mod Mod4
 font pango:monospace 8
