@@ -455,7 +455,7 @@ Not every package plays nice with evil. This collection of keybindings will allo
   :after evil
   :ensure t
   :config
-  (setq evil-collection-mode-list '(term dired elfeed))
+  (setq evil-collection-mode-list '(vterm dired elfeed))
   (evil-collection-term-setup)
   (evil-collection-init))
    #+end_src
@@ -631,11 +631,45 @@ Javascript formatter with configuration to play nice with the Standard linter.
    | prettier-js-mode | setup-tide-mode |
 
 ** Libvterm
-Alternative to the standard terminals that come with Emacs, this terminal can actually render TUI apps.
+Alternative to the standard terminals that come with Emacs, this terminal can actually render TUI apps: Requires cmake installed
    #+begin_src emacs-lisp
    (use-package vterm
-   :load-path  "~/.config/emacs/emacs-libvterm"
+   :ensure t
    )
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** PDF Tools
+ Alternative to docview for reading PDFs
+   #+begin_src emacs-lisp
+   (use-package pdf-tools
+   :ensure t
+   :config
+   (pdf-tools-install))
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Nov.el
+Major mode for reading epub files
+   #+begin_src emacs-lisp
+   (use-package nov
+   :ensure t
+   :config
+   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Simple MPC
+Major mode for interfacing with Music Player Daemon
+   #+begin_src emacs-lisp
+   (use-package simple-mpc
+   :ensure t)
    #+end_src
 
    #+RESULTS:
