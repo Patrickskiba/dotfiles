@@ -7,9 +7,6 @@
 **** http://oremacs.com/atom.xml
 **** https://metaredux.com/feed.xml
 * Podcasts                                                        :elfeed:
-** Agile                                                   :agile:podcast:
-*** http://feeds.feedburner.com/Meta-cast                       :metacast:
-*** https://scrummastertoolbox.libsyn.com/rss?utm_source=SMTP_site&utm_medium=sidebar  :scrummastertoolbox:
 ** Android                                               :android:podcast:
 *** https://feeds.feedburner.com/blogspot/AndroidDevelopersBackstage
 *** https://rss.simplecast.com/podcasts/1684/rss
@@ -21,6 +18,8 @@
 *** https://feeds.transistor.fm/devpath-fm
 *** https://changelog.com/founderstalk/feed
 *** https://learntocodewithme.libsyn.com/rss
+** Startup                                               :startup:podcast:
+**** http://feeds.backtracks.fm/feeds/indiehackers/indiehackers/feed.xml?1576531335  :indihackers:
 * Youtube                                                         :elfeed:
 ** Anarco Primitive                                            :primitive:
 *** https://www.youtube.com/feeds/videos.xml?channel_id=UCAL3JXZSzSm8AlZyD3nQdBA :primtech:
@@ -55,6 +54,7 @@
 *** https://www.youtube.com/feeds/videos.xml?channel_id=UC-lHJZR3Gqxm24_Vd_AJ5Yw :pewdiepie:
 *** https://www.youtube.com/feeds/videos.xml?channel_id=UCq6VFHwMzcMXbuKyG7SQYIg :penguinz0:
 *** https://www.youtube.com/feeds/videos.xml?channel_id=UCtMVHI3AJD4Qk4hcbZnI9ZQ :someordinarygamers:
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCUK85Tghaymyqg6Rtr1mjRQ :gbaustin:
 ** Music                                                           :music:
 *** https://www.youtube.com/feeds/videos.xml?channel_id=UCqawn0e2CDawyRppfJk_kFw :backalleykat:
 *** https://www.youtube.com/feeds/videos.xml?channel_id=UCykhRZORxkMpG2R3cGHJ32A :autisticboysmoneyclan:

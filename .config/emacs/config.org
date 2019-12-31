@@ -7,7 +7,7 @@
 - Backups
    Backup all files in a backup directory rather than in the current directory
    #+begin_src emacs-lisp
-   (setq backup-directory-alist '(("." . "~/.emacs.d/backup")))
+   (setq backup-directory-alist '(("." . "~/.config/emacs/backup")))
    #+end_src
 
    #+RESULTS:
@@ -318,15 +318,11 @@ Browsers are bloat, if I'm using elfeed (the RSS reader) all youtube videos shou
 (defun elfeed-play-with-mpv ()
   "Play entry link with mpv."
   (interactive)
-  (let ((entry (if (eq major-mode 'elfeed-show-mode) elfeed-show-entry (elfeed-search-selected :single)))
-        (quality-arg "")
-        (quality-val "720"))
-    (setq quality-val (string-to-number quality-val))
-    (elfeed-untag entry 'unread)
-    (message "Opening %s with height≤%s with mpv..." (elfeed-entry-link entry) quality-val)
-    (when (< 0 quality-val)
-      (setq quality-arg (format "--ytdl-format=[height<=?%s]" quality-val)))
-    (start-process "elfeed-mpv" nil "mpv" quality-arg (elfeed-entry-link entry))))
+  (let ((entry (if (eq major-mode 'elfeed-show-mode) elfeed-show-entry (elfeed-search-selected :single))))
+    (message "Opening %s" (elfeed-entry-link entry))
+    (progn (elfeed-untag entry 'unread)
+    (elfeed-search-update-entry entry)
+    (start-process "elfeed-mpv" nil "mpv" (elfeed-entry-link entry)))))
 
 (defvar elfeed-mpv-patterns
   '("youtu\\.?be")
@@ -402,7 +398,7 @@ Elfeed extension to define RSS feed lists in org mode.
    :ensure t
    :config
    (elfeed-org)
-   (setq rmh-elfeed-org-files (list "~/.emacs.d/elfeed.org")))
+   (setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org")))
    #+end_src
 
    #+RESULTS:
