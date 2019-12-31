@@ -5,7 +5,7 @@
 ;;; Code:
 (require 'package)
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (when (boundp 'package-pinned-packages)
   (setq package-pinned-packages
@@ -36,7 +36,7 @@
  '(js2-strict-missing-semi-warning nil)
  '(org-agenda-files '("~/Dropbox"))
  '(package-selected-packages
-   '(vterm elfeed-org elfeed markdown-mode ledger-mode ledger pass company-mode doom-themes doom-modeline evil-magit magit evil-collection rainbow-delimiters tide flycheck smex evil counsel-projectile projectile which-key general prettier-js web-mode counsel ivy use-package gruvbox-theme ace-window))
+   '(simple-mpc nov nov-mode pdf-tools vterm elfeed-org elfeed markdown-mode ledger-mode ledger pass company-mode doom-themes doom-modeline evil-magit magit evil-collection rainbow-delimiters tide flycheck smex evil counsel-projectile projectile which-key general prettier-js web-mode counsel ivy use-package gruvbox-theme ace-window))
  '(projectile-git-command
    "comm -23 <(git ls-files -co --exclude-standard | sort) <(git ls-files -d | sort) | tr '\\n' '\\0'"))
 (custom-set-faces

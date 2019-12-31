@@ -4,7 +4,7 @@
 #+OPTIONS: toc:nil num:nil
 
 * Basics
-** Backups
+- Backups
    Backup all files in a backup directory rather than in the current directory
    #+begin_src emacs-lisp
    (setq backup-directory-alist '(("." . "~/.config/emacs/backup")))
@@ -13,7 +13,7 @@
    #+RESULTS:
    : ((. . ~/.emacs.d/backup))
 
-** Clock
+- Clock
    Enable system clock in the bottom row
    #+begin_src emacs-lisp
    (display-time-mode t)
@@ -22,7 +22,7 @@
    #+RESULTS:
    : t
 
-** Recursive Minibuffer
+- Recursive Minibuffer
    Allow interactive commands from within the minibuffer. For an in depth explaination of what it does see the following [[post][https://www.masteringemacs.org/article/executing-shell-commands-emacs]]
    #+begin_src emacs-lisp
    (setq enable-recursive-minibuffers t)
@@ -31,7 +31,7 @@
    #+RESULTS:
    : t
 
-** Add parts of each file's directory to the buffer name if not unique
+- Add parts of each file's directory to the buffer name if not unique
    #+begin_src emacs-lisp
    (require 'uniquify)
    (setq uniquify-buffer-name-style 'forward)
@@ -40,7 +40,7 @@
    #+RESULTS:
    : forward
 
-** 80 chars is a good width.
+- 80 chars is a good width.
    #+begin_src emacs-lisp
    (set-default 'fill-column 80)
    #+end_src
@@ -48,7 +48,7 @@
    #+RESULTS:
    : 80
 
-** Hide UI cruft
+- Hide UI cruft
    #+begin_src emacs-lisp
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -57,7 +57,7 @@
 
    #+RESULTS:
 
-** Hide the splash screen
+- Hide the splash screen
    #+begin_src emacs-lisp
 (setq inhibit-startup-message t
 inhibit-startup-echo-area-message t)
@@ -66,23 +66,21 @@ inhibit-startup-echo-area-message t)
    #+RESULTS:
    : t
 
-** Emacs auto indent
+- Emacs auto indent
    #+begin_src emacs-lisp
 (define-key global-map (kbd "RET") 'newline-and-indent)
    #+end_src
 
    #+RESULTS:
    : newline-and-indent
-
-** Move files to trash when deleting
+- Move files to trash when deleting
    #+begin_src emacs-lisp
 (setq delete-by-moving-to-trash t)
    #+end_src
 
    #+RESULTS:
    : t
-
-** Allow pasting selection outside of Emacs
+- Allow pasting selection outside of Emacs
    #+begin_src emacs-lisp
 (setq select-enable-clipboard t)
    #+end_src
@@ -90,7 +88,7 @@ inhibit-startup-echo-area-message t)
    #+RESULTS:
    : t
 
-** Auto refresh buffers
+- Auto refresh buffers
    #+begin_src emacs-lisp
 (global-auto-revert-mode 1)
    #+end_src
@@ -98,7 +96,7 @@ inhibit-startup-echo-area-message t)
    #+RESULTS:
    : t
 
-** Also auto refresh dired, but be quiet about it
+- Also auto refresh dired, but be quiet about it
    #+begin_src emacs-lisp
 (defvar global-auto-revert-non-file-buffers)
 (setq global-auto-revert-non-file-buffers t)
@@ -109,7 +107,7 @@ inhibit-startup-echo-area-message t)
 
    #+RESULTS:
 
-** Show keystrokes in progress
+- Show keystrokes in progress
    #+begin_src emacs-lisp
 (setq echo-keystrokes 0.1)
    #+end_src
@@ -117,14 +115,14 @@ inhibit-startup-echo-area-message t)
    #+RESULTS:
    : 0.1
 
-** Real emacs knights don't use shift to mark things
+- Real emacs knights don't use shift to mark things
    #+begin_src emacs-lisp
 (setq shift-select-mode nil)
    #+end_src
 
    #+RESULTS:
 
-** Transparently open compressed files
+- Transparently open compressed files
    #+begin_src emacs-lisp
 (auto-compression-mode t)
    #+end_src
@@ -132,7 +130,7 @@ inhibit-startup-echo-area-message t)
    #+RESULTS:
    : t
 
-** Enable syntax highlighting for older Emacsen that have it off
+- Enable syntax highlighting for older Emacsen that have it off
    #+begin_src emacs-lisp
 (global-font-lock-mode t)
    #+end_src
@@ -140,7 +138,7 @@ inhibit-startup-echo-area-message t)
    #+RESULTS:
    : t
 
-** Answering just 'y' or 'n' will do
+- Answering just 'y' or 'n' will do
    #+begin_src emacs-lisp
 (defalias 'yes-or-no-p 'y-or-n-p)
    #+end_src
@@ -148,7 +146,7 @@ inhibit-startup-echo-area-message t)
    #+RESULTS:
    : yes-or-no-p
 
-** UTF-8 please
+- UTF-8 please
    #+begin_src emacs-lisp
 (setq locale-coding-system 'utf-8) ; pretty
 (set-terminal-coding-system 'utf-8) ; pretty
@@ -159,7 +157,7 @@ inhibit-startup-echo-area-message t)
 
    #+RESULTS:
 
-** Show active region
+- Show active region
     #+begin_src emacs-lisp
 (transient-mark-mode 1)
 (make-variable-buffer-local 'transient-mark-mode)
@@ -170,7 +168,7 @@ inhibit-startup-echo-area-message t)
    #+RESULTS:
    : t
 
-** Don't highlight matches with jump-char - it's distracting
+- Don't highlight matches with jump-char - it's distracting
    #+begin_src emacs-lisp
 (defvar jump-char-lazy-highlight-face)
 (setq jump-char-lazy-highlight-face nil)
@@ -178,7 +176,7 @@ inhibit-startup-echo-area-message t)
 
    #+RESULTS:
 
-** Save a list of recent files visited. (open recent file with C-x f)
+- Save a list of recent files visited. (open recent file with C-x f)
    #+begin_src emacs-lisp
 (recentf-mode 1)
 (defvar recentf-max-saved-items)
@@ -188,7 +186,7 @@ inhibit-startup-echo-area-message t)
    #+RESULTS:
    : 100
 
-** Save minibuffer history
+- Save minibuffer history
    #+begin_src emacs-lisp
 (savehist-mode 1)
 (setq history-length 1000)
@@ -197,7 +195,7 @@ inhibit-startup-echo-area-message t)
    #+RESULTS:
    : 1000
 
-** Undo/redo window configuration with C-c <left>/<right>
+- Undo/redo window configuration with C-c <left>/<right>
    #+begin_src emacs-lisp
 (winner-mode 1)
    #+end_src
@@ -205,14 +203,14 @@ inhibit-startup-echo-area-message t)
    #+RESULTS:
    : t
 
-** Never insert tabs
+- Never insert tabs
    #+begin_src emacs-lisp
 (set-default 'indent-tabs-mode nil)
    #+end_src
 
    #+RESULTS:
 
-** Easily navigate sillycased words
+- Easily navigate sillycased words
    #+begin_src emacs-lisp
 (global-subword-mode 1)
    #+end_src
@@ -220,7 +218,7 @@ inhibit-startup-echo-area-message t)
    #+RESULTS:
    : t
 
-** Don't break lines for me, please
+- Don't break lines for me, please
    #+begin_src emacs-lisp
 (setq-default truncate-lines t)
    #+end_src
@@ -228,7 +226,7 @@ inhibit-startup-echo-area-message t)
    #+RESULTS:
    : t
 
-** Allow recursive minibuffers
+- Allow recursive minibuffers
    #+begin_src emacs-lisp
 (setq enable-recursive-minibuffers t)
    #+end_src
@@ -236,7 +234,7 @@ inhibit-startup-echo-area-message t)
    #+RESULTS:
    : t
 
-** Don't be so stingy on the memory, we have lots now. It's the distant future.
+- Don't be so stingy on the memory, we have lots now. It's the distant future.
    #+begin_src emacs-lisp
 (setq gc-cons-threshold 200000000)
    #+end_src
@@ -244,7 +242,7 @@ inhibit-startup-echo-area-message t)
    #+RESULTS:
    : 200000000
 
-** org-mode: Don't ruin S-arrow to switch windows please (use M-+ and M-- instead to toggle)
+- org-mode: Don't ruin S-arrow to switch windows please (use M-+ and M-- instead to toggle)
    #+begin_src emacs-lisp
 (defvar org-replace-disputed-keys)
 (setq org-replace-disputed-keys t)
@@ -253,7 +251,7 @@ inhibit-startup-echo-area-message t)
    #+RESULTS:
    : t
 
-** Fontify org-mode code blocks
+- Fontify org-mode code blocks
    #+begin_src emacs-lisp
 (defvar org-src-fontify-natively)
 (setq org-src-fontify-natively t)
@@ -262,14 +260,14 @@ inhibit-startup-echo-area-message t)
    #+RESULTS:
    : t
 
-** Sentences do not need double spaces to end. Period.
+- Sentences do not need double spaces to end. Period.
    #+begin_src emacs-lisp
 (set-default 'sentence-end-double-space nil)
    #+end_src
 
    #+RESULTS:
 
-** A saner ediff
+- A saner ediff
    #+begin_src emacs-lisp
 (defvar ediff-diff-options)
 (setq ediff-diff-options "-w")
@@ -286,6 +284,7 @@ inhibit-startup-echo-area-message t)
 
 * Functions
 ** Split-Bill
+Split bill will produce a Ledger transaction for two people who are splitting the cost of one transaction.
    #+begin_src emacs-lisp
    (defun split-bill (amount)
    "Splits dollar amounts in half"
@@ -297,6 +296,7 @@ inhibit-startup-echo-area-message t)
    : split-bill
 
 ** Setup TIDE
+Setup TIDE initializes all packages that are benefical for programming in Javascript/Typescript.
    #+begin_src emacs-lisp
    (defun setup-tide-mode ()
    "Setup function for tide."
@@ -313,6 +313,7 @@ inhibit-startup-echo-area-message t)
    : setup-tide-mode
 
 ** Elfeed Open Videos in MPV
+Browsers are bloat, if I'm using elfeed (the RSS reader) all youtube videos should open up in MPV rather than a browser.
    #+begin_src emacs-lisp
 (defun elfeed-play-with-mpv ()
   "Play entry link with mpv."
@@ -348,6 +349,7 @@ See `elfeed-play-with-mpv'."
 
 * Packages
 ** Company
+My choice autocomplete package with keybindings for C-n and C-p to match VIM autocomplete.
    #+begin_src emacs-lisp
    (use-package company
    :ensure t
@@ -360,6 +362,7 @@ See `elfeed-play-with-mpv'."
    : t
 
 ** Doom Modeline
+A nice looking modeline with icons that replaces the boring default modeline.
    #+begin_src emacs-lisp
    (use-package doom-modeline
    :ensure t
@@ -377,6 +380,7 @@ See `elfeed-play-with-mpv'."
    | enable-doom-modeline-icons | x-dnd-init-frame |
 
 ** Elfeed
+Since Emacs should be used for everything, I use Elfeed as my RSS reader.
    #+begin_src emacs-lisp
    (use-package elfeed
    :config
@@ -388,6 +392,7 @@ See `elfeed-play-with-mpv'."
    : t
 
 ** Elfeed Org
+Elfeed extension to define RSS feed lists in org mode.
    #+begin_src emacs-lisp
    (use-package elfeed-org
    :ensure t
@@ -399,6 +404,7 @@ See `elfeed-play-with-mpv'."
    #+RESULTS:
 
 ** Flycheck
+Syntax checker.
    #+begin_src emacs-lisp
    (use-package flycheck
    :ensure t
@@ -410,6 +416,7 @@ See `elfeed-play-with-mpv'."
    : t
 
 ** Tide
+Typescript/Javascript mode with a lot of great functionality.
    #+begin_src emacs-lisp
    (use-package tide
    :ensure t
@@ -423,6 +430,7 @@ See `elfeed-play-with-mpv'."
    : t
 
 ** Evil
+VIM keybindings for Emacs.
    #+begin_src emacs-lisp
    (use-package evil
    :ensure t
@@ -437,12 +445,13 @@ See `elfeed-play-with-mpv'."
    : t
 
 ** Evil Collection
+Not every package plays nice with evil. This collection of keybindings will allow you to override the default keybindings with VIM friendly ones.
    #+begin_src emacs-lisp
 (use-package evil-collection
   :after evil
   :ensure t
   :config
-  (setq evil-collection-mode-list '(term dired elfeed))
+  (setq evil-collection-mode-list '(vterm dired elfeed))
   (evil-collection-term-setup)
   (evil-collection-init))
    #+end_src
@@ -451,6 +460,7 @@ See `elfeed-play-with-mpv'."
    : t
 
 ** General
+General makes defining keybindings easy and convenient. 
    #+begin_src emacs-lisp
    (use-package general
    :ensure t
@@ -462,6 +472,7 @@ See `elfeed-play-with-mpv'."
    : t
 
 ** Which Key
+Which key will display all available keybindings with a specificed prefix.
    #+begin_src emacs-lisp
    (use-package which-key
    :ensure t
@@ -476,6 +487,7 @@ See `elfeed-play-with-mpv'."
    : t
 
 ** Magit
+Git interface.
    #+begin_src emacs-lisp
    (use-package magit
    :ensure t)
@@ -484,6 +496,7 @@ See `elfeed-play-with-mpv'."
    #+RESULTS:
 
 ** Evil Magit
+Vim bindings for Magit.
    #+begin_src emacs-lisp
    (use-package evil-magit
    :ensure t)
@@ -492,6 +505,7 @@ See `elfeed-play-with-mpv'."
    #+RESULTS:
 
 ** Doom Themes
+Make my Emacs pretty please.
    #+begin_src emacs-lisp
    (use-package doom-themes
    :ensure t
@@ -508,6 +522,7 @@ See `elfeed-play-with-mpv'."
    : t
 
 ** Avy
+Jump your cursor from place to place.
    #+begin_src emacs-lisp
    (use-package avy
    :ensure t)
@@ -516,6 +531,7 @@ See `elfeed-play-with-mpv'."
    #+RESULTS:
 
 ** Ace Window
+Manage your Emacs windows with a set of functions.
    #+begin_src emacs-lisp
    (use-package ace-window
    :ensure t)
@@ -524,6 +540,7 @@ See `elfeed-play-with-mpv'."
    #+RESULTS:
 
 ** Counsel
+Functions produced by Abo-Abo that usually leverage Ivy as a fuzzy find engine.
    #+begin_src emacs-lisp
    (use-package counsel
    :ensure t
@@ -537,6 +554,7 @@ See `elfeed-play-with-mpv'."
    : t
 
 ** Counsel Projectile
+Project based functions.
    #+begin_src emacs-lisp
    (use-package counsel-projectile
    :ensure t
@@ -548,6 +566,7 @@ See `elfeed-play-with-mpv'."
    : t
 
 ** Projectile
+A package that encapsulates git repositories in to projects, exposing a set of project specific functions. 
    #+begin_src emacs-lisp
    (use-package projectile
    :ensure t
@@ -559,6 +578,7 @@ See `elfeed-play-with-mpv'."
    : t
 
 ** Smex
+Fuzzy find all your M-x functions.
    #+begin_src emacs-lisp
    (use-package smex
    :ensure t)
@@ -567,6 +587,7 @@ See `elfeed-play-with-mpv'."
    #+RESULTS:
 
 ** Ledger
+Keep track of finances.
    #+begin_src emacs-lisp
    (use-package ledger-mode
    :ensure t)
@@ -575,6 +596,7 @@ See `elfeed-play-with-mpv'."
    #+RESULTS:
 
 ** Rainbow Delimiters
+Helps find matching parens and brackets using a simple solution.
    #+begin_src emacs-lisp
    (use-package rainbow-delimiters
    :ensure t
@@ -585,6 +607,7 @@ See `elfeed-play-with-mpv'."
    | rainbow-delimiters-mode |
 
 ** Prettier
+Javascript formatter with configuration to play nice with the Standard linter.
    #+begin_src emacs-lisp
    (use-package prettier-js
    :ensure t
@@ -604,10 +627,45 @@ See `elfeed-play-with-mpv'."
    | prettier-js-mode | setup-tide-mode |
 
 ** Libvterm
+Alternative to the standard terminals that come with Emacs, this terminal can actually render TUI apps: Requires cmake installed
    #+begin_src emacs-lisp
    (use-package vterm
-   :load-path  "~/.config/emacs/emacs-libvterm"
+   :ensure t
    )
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** PDF Tools
+ Alternative to docview for reading PDFs
+   #+begin_src emacs-lisp
+   (use-package pdf-tools
+   :ensure t
+   :config
+   (pdf-tools-install))
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Nov.el
+Major mode for reading epub files
+   #+begin_src emacs-lisp
+   (use-package nov
+   :ensure t
+   :config
+   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+   #+end_src
+
+   #+RESULTS:
+   : t
+
+** Simple MPC
+Major mode for interfacing with Music Player Daemon
+   #+begin_src emacs-lisp
+   (use-package simple-mpc
+   :ensure t)
    #+end_src
 
    #+RESULTS:
