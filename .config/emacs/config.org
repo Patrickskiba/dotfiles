@@ -681,6 +681,12 @@ Major mode for interfacing with Music Player Daemon
 ** Global Keybindings
    Primary keybindings
    #+begin_src emacs-lisp
+
+   (general-define-key
+   :keymaps '(global emacs)
+   "<f12>" '(bookmark-jump :which-key "bookmark jump"))
+   
+
    (general-define-key
    :prefix "SPC"
    :states 'normal
@@ -705,6 +711,9 @@ Major mode for interfacing with Music Player Daemon
    "T" '(:ignore t :which-key "text")
    "Tz" '(hydra-zoom/body :which-key "zoom"))
    #+end_src
+
+   #+RESULTS:
+
 ** Javascript
    #+begin_src emacs-lisp
 (general-define-key
