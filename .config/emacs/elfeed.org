@@ -1,11 +1,21 @@
 * Blogs                                                           :elfeed:
-** Software Development                                              :dev:
+** Software Development                                           :blogs:dev:
 *** Linux                                                          :linux:
 **** https://lukesmith.xyz/rss.xml                             :lukesmith:
 *** Emacs                                                          :emacs:
 **** http://nullprogram.com/feed
 **** http://oremacs.com/atom.xml
 **** https://metaredux.com/feed.xml
+*** General                                                      :general:
+**** https://danluu.com/atom.xml
+**** https://drewdevault.com/
+**** https://sivers.org/blog
+**** http://www.windytan.com/feeds/posts/default
+**** https://syonyk.blogspot.com/feeds/posts/default
+**** https://www.popehat.com/feed/
+**** https://waitbutwhy.com/feed
+**** https://www.interfluidity.com/feed
+**** https://www.joelonsoftware.com/
 * Podcasts                                                        :elfeed:
 ** Android                                               :android:podcast:
 *** https://feeds.feedburner.com/blogspot/AndroidDevelopersBackstage
