@@ -282,6 +282,14 @@ inhibit-startup-echo-area-message t)
    #+RESULTS:
    : ediff-setup-windows-plain
 
+- Display Window Number
+   #+begin_src emacs-lisp
+   (ace-window-display-mode t)
+   #+end_src
+
+   #+RESULTS:
+   : t
+
 * Functions
 ** Split-Bill
 Split bill will produce a Ledger transaction for two people who are splitting the cost of one transaction.
@@ -385,6 +393,7 @@ Since Emacs should be used for everything, I use Elfeed as my RSS reader.
    (use-package elfeed
    :config
    (setq elfeed-use-curl t)
+   (setq-default elfeed-search-filter "@5-days-ago +unread ")
    :ensure t)
    #+end_src
 
@@ -660,12 +669,30 @@ Major mode for reading epub files
 
    #+RESULTS:
    : t
-
-** Simple MPC
-Major mode for interfacing with Music Player Daemon
+** MPDel
+   Major mode for interfacing with Music Player Daemon
    #+begin_src emacs-lisp
-   (use-package simple-mpc
+   (use-package mpdel
+   :ensure t
+   :config
+   (mpdel-mode))
+   #+end_src
+
+   #+RESULTS:
+   : t
+   
+   #+begin_src emacs-lisp
+   (use-package libmpdel
    :ensure t)
+   #+end_src
+
+   #+RESULTS:
+** Pass
+   Major mode for password-store
+   #+begin_src emacs-lisp
+   (use-package pass
+   :ensure t
+   )
    #+end_src
 
    #+RESULTS:
@@ -703,6 +730,7 @@ Major mode for interfacing with Music Player Daemon
    "w" '(:ignore t :which-key "window")
    "wo" '(ace-window :which-key "other window")
    "ws" '(split-window-below :which-key "split window below")
+   "wS" '(ace-swap-window :which-key "swap windows")
    "wv" '(split-window-right :which-key "split window vertically")
    "w=" '(balance-windows :which-key "balance windows")
    "wd" '(ace-delete-window :which-key "delete window")
