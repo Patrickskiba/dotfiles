@@ -702,7 +702,7 @@ Major mode for reading epub files
    #+begin_src emacs-lisp
 (general-define-key
  :states 'normal
- :keymaps '(override dired-mode-map elfeed-search-mode-map elfeed-show-mode-map)
+ :keymaps '(override dired-mode-map elfeed-search-mode-map elfeed-show-mode-map pdf-view-mode-map)
  "SPC" nil)
    #+end_src
 ** Global Keybindings
@@ -716,7 +716,7 @@ Major mode for reading epub files
 
    (general-define-key
    :prefix "SPC"
-   :states 'normal
+   :states '(normal emacs)
    :keymaps '(global dired-mode-map emacs)
    "s" '(swiper :which-key "swiper")
    "a" '(counsel-M-x :which-key "funcs")
@@ -808,3 +808,15 @@ Major mode for reading epub files
    #+end_src
 
    #+RESULTS:
+
+** PDF-Tools
+   #+begin_src emacs-lisp
+   (general-define-key
+   :keymaps 'pdf-view-mode-map
+   "SPC" nil
+   "j" 'pdf-view-next-line-or-next-page
+   "k" 'pdf-view-previous-line-or-previous-page
+   "C-n" 'pdf-view-scroll-up-or-next-page
+   "C-p" 'pdf-view-scroll-down-or-previous-page
+)
+   #+end_src
